@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hice1/sli967/HyTech
+CMAKE_SOURCE_DIR = /home/hice1/sli967/Autonomous
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hice1/sli967/HyTech/build
+CMAKE_BINARY_DIR = /home/hice1/sli967/Autonomous/build
 
 # Include any dependencies generated for this target.
 include ConeDetection/CMakeFiles/ConeDetection.dir/depend.make
@@ -70,46 +70,46 @@ include ConeDetection/CMakeFiles/ConeDetection.dir/progress.make
 include ConeDetection/CMakeFiles/ConeDetection.dir/flags.make
 
 ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.o: ConeDetection/CMakeFiles/ConeDetection.dir/flags.make
-ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.o: /home/hice1/sli967/HyTech/ConeDetection/code/Cone.cpp
+ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.o: /home/hice1/sli967/Autonomous/ConeDetection/code/Cone.cpp
 ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.o: ConeDetection/CMakeFiles/ConeDetection.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hice1/sli967/HyTech/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.o"
-	cd /home/hice1/sli967/HyTech/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.o -MF CMakeFiles/ConeDetection.dir/code/Cone.cpp.o.d -o CMakeFiles/ConeDetection.dir/code/Cone.cpp.o -c /home/hice1/sli967/HyTech/ConeDetection/code/Cone.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hice1/sli967/Autonomous/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.o"
+	cd /home/hice1/sli967/Autonomous/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.o -MF CMakeFiles/ConeDetection.dir/code/Cone.cpp.o.d -o CMakeFiles/ConeDetection.dir/code/Cone.cpp.o -c /home/hice1/sli967/Autonomous/ConeDetection/code/Cone.cpp
 
 ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ConeDetection.dir/code/Cone.cpp.i"
-	cd /home/hice1/sli967/HyTech/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hice1/sli967/HyTech/ConeDetection/code/Cone.cpp > CMakeFiles/ConeDetection.dir/code/Cone.cpp.i
+	cd /home/hice1/sli967/Autonomous/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hice1/sli967/Autonomous/ConeDetection/code/Cone.cpp > CMakeFiles/ConeDetection.dir/code/Cone.cpp.i
 
 ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ConeDetection.dir/code/Cone.cpp.s"
-	cd /home/hice1/sli967/HyTech/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hice1/sli967/HyTech/ConeDetection/code/Cone.cpp -o CMakeFiles/ConeDetection.dir/code/Cone.cpp.s
+	cd /home/hice1/sli967/Autonomous/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hice1/sli967/Autonomous/ConeDetection/code/Cone.cpp -o CMakeFiles/ConeDetection.dir/code/Cone.cpp.s
 
 ConeDetection/CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.o: ConeDetection/CMakeFiles/ConeDetection.dir/flags.make
-ConeDetection/CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.o: /home/hice1/sli967/HyTech/ConeDetection/code/DBSCAN.cpp
+ConeDetection/CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.o: /home/hice1/sli967/Autonomous/ConeDetection/code/DBSCAN.cpp
 ConeDetection/CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.o: ConeDetection/CMakeFiles/ConeDetection.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hice1/sli967/HyTech/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object ConeDetection/CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.o"
-	cd /home/hice1/sli967/HyTech/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ConeDetection/CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.o -MF CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.o.d -o CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.o -c /home/hice1/sli967/HyTech/ConeDetection/code/DBSCAN.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hice1/sli967/Autonomous/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object ConeDetection/CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.o"
+	cd /home/hice1/sli967/Autonomous/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ConeDetection/CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.o -MF CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.o.d -o CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.o -c /home/hice1/sli967/Autonomous/ConeDetection/code/DBSCAN.cpp
 
 ConeDetection/CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.i"
-	cd /home/hice1/sli967/HyTech/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hice1/sli967/HyTech/ConeDetection/code/DBSCAN.cpp > CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.i
+	cd /home/hice1/sli967/Autonomous/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hice1/sli967/Autonomous/ConeDetection/code/DBSCAN.cpp > CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.i
 
 ConeDetection/CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.s"
-	cd /home/hice1/sli967/HyTech/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hice1/sli967/HyTech/ConeDetection/code/DBSCAN.cpp -o CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.s
+	cd /home/hice1/sli967/Autonomous/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hice1/sli967/Autonomous/ConeDetection/code/DBSCAN.cpp -o CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.s
 
 ConeDetection/CMakeFiles/ConeDetection.dir/code/main.cpp.o: ConeDetection/CMakeFiles/ConeDetection.dir/flags.make
-ConeDetection/CMakeFiles/ConeDetection.dir/code/main.cpp.o: /home/hice1/sli967/HyTech/ConeDetection/code/main.cpp
+ConeDetection/CMakeFiles/ConeDetection.dir/code/main.cpp.o: /home/hice1/sli967/Autonomous/ConeDetection/code/main.cpp
 ConeDetection/CMakeFiles/ConeDetection.dir/code/main.cpp.o: ConeDetection/CMakeFiles/ConeDetection.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hice1/sli967/HyTech/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object ConeDetection/CMakeFiles/ConeDetection.dir/code/main.cpp.o"
-	cd /home/hice1/sli967/HyTech/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ConeDetection/CMakeFiles/ConeDetection.dir/code/main.cpp.o -MF CMakeFiles/ConeDetection.dir/code/main.cpp.o.d -o CMakeFiles/ConeDetection.dir/code/main.cpp.o -c /home/hice1/sli967/HyTech/ConeDetection/code/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hice1/sli967/Autonomous/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object ConeDetection/CMakeFiles/ConeDetection.dir/code/main.cpp.o"
+	cd /home/hice1/sli967/Autonomous/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ConeDetection/CMakeFiles/ConeDetection.dir/code/main.cpp.o -MF CMakeFiles/ConeDetection.dir/code/main.cpp.o.d -o CMakeFiles/ConeDetection.dir/code/main.cpp.o -c /home/hice1/sli967/Autonomous/ConeDetection/code/main.cpp
 
 ConeDetection/CMakeFiles/ConeDetection.dir/code/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ConeDetection.dir/code/main.cpp.i"
-	cd /home/hice1/sli967/HyTech/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hice1/sli967/HyTech/ConeDetection/code/main.cpp > CMakeFiles/ConeDetection.dir/code/main.cpp.i
+	cd /home/hice1/sli967/Autonomous/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hice1/sli967/Autonomous/ConeDetection/code/main.cpp > CMakeFiles/ConeDetection.dir/code/main.cpp.i
 
 ConeDetection/CMakeFiles/ConeDetection.dir/code/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ConeDetection.dir/code/main.cpp.s"
-	cd /home/hice1/sli967/HyTech/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hice1/sli967/HyTech/ConeDetection/code/main.cpp -o CMakeFiles/ConeDetection.dir/code/main.cpp.s
+	cd /home/hice1/sli967/Autonomous/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hice1/sli967/Autonomous/ConeDetection/code/main.cpp -o CMakeFiles/ConeDetection.dir/code/main.cpp.s
 
 # Object files for target ConeDetection
 ConeDetection_OBJECTS = \
@@ -125,18 +125,18 @@ output/bin/ConeDetection: ConeDetection/CMakeFiles/ConeDetection.dir/code/DBSCAN
 output/bin/ConeDetection: ConeDetection/CMakeFiles/ConeDetection.dir/code/main.cpp.o
 output/bin/ConeDetection: ConeDetection/CMakeFiles/ConeDetection.dir/build.make
 output/bin/ConeDetection: ConeDetection/CMakeFiles/ConeDetection.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hice1/sli967/HyTech/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable ../output/bin/ConeDetection"
-	cd /home/hice1/sli967/HyTech/build/ConeDetection && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ConeDetection.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hice1/sli967/Autonomous/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable ../output/bin/ConeDetection"
+	cd /home/hice1/sli967/Autonomous/build/ConeDetection && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ConeDetection.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 ConeDetection/CMakeFiles/ConeDetection.dir/build: output/bin/ConeDetection
 .PHONY : ConeDetection/CMakeFiles/ConeDetection.dir/build
 
 ConeDetection/CMakeFiles/ConeDetection.dir/clean:
-	cd /home/hice1/sli967/HyTech/build/ConeDetection && $(CMAKE_COMMAND) -P CMakeFiles/ConeDetection.dir/cmake_clean.cmake
+	cd /home/hice1/sli967/Autonomous/build/ConeDetection && $(CMAKE_COMMAND) -P CMakeFiles/ConeDetection.dir/cmake_clean.cmake
 .PHONY : ConeDetection/CMakeFiles/ConeDetection.dir/clean
 
 ConeDetection/CMakeFiles/ConeDetection.dir/depend:
-	cd /home/hice1/sli967/HyTech/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hice1/sli967/HyTech /home/hice1/sli967/HyTech/ConeDetection /home/hice1/sli967/HyTech/build /home/hice1/sli967/HyTech/build/ConeDetection /home/hice1/sli967/HyTech/build/ConeDetection/CMakeFiles/ConeDetection.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/hice1/sli967/Autonomous/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hice1/sli967/Autonomous /home/hice1/sli967/Autonomous/ConeDetection /home/hice1/sli967/Autonomous/build /home/hice1/sli967/Autonomous/build/ConeDetection /home/hice1/sli967/Autonomous/build/ConeDetection/CMakeFiles/ConeDetection.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : ConeDetection/CMakeFiles/ConeDetection.dir/depend
 

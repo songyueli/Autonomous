@@ -1,4 +1,4 @@
-# Install script for directory: /home/hice1/sli967/HyTech/ConeDetection
+# Install script for directory: /home/hice1/sli967/Autonomous/ConeDetection
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
