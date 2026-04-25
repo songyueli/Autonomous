@@ -10,10 +10,17 @@
 #include <algorithm>
 #include <string>
 #include <filesystem>
-#include <opencv2/opencv.hpp> // Optional method for opening image
+#include <vector>
+#include <stdexcept>
+#include <cstdint>
+
+// #include <opencv2/opencv.hpp> // Optional method for opening image
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
+
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "stb_image_write.h"
 
 using namespace std;
 namespace fs = filesystem;
@@ -22,7 +29,8 @@ using namespace fs;
 int main(int argc, char** argv)
 {
     // Collect args
-    if (argc != 2) {
+    if (argc != 2) 
+    {
         cerr << "Usage: " << argv[0] << " <dataset_path>\n";
         return 1;
     }
@@ -34,51 +42,84 @@ int main(int argc, char** argv)
         cerr << "ERROR: File path does not exist\n";
     }
 
-    cout << "Hello chuds" << endl; 
     cout << "Using dataset: " << dataset_path << endl;
 
     path ann_path = dataset_path / "ann";
     path img_path = dataset_path / "img";
 
     // annotation and images directory checks for fsoco
-    if (!exists(ann_path) || !is_directory(ann_path)) {
+    if (!exists(ann_path) || !is_directory(ann_path)) 
+    {
         throw runtime_error("ann folder missing");
     }
 
-    if (!exists(img_path) || !is_directory(img_path)) {
+    if (!exists(img_path) || !is_directory(img_path)) 
+    {
         throw runtime_error("img folder missing");
     }
 
-    // Check first image
-    path first_image;
+    // Generate a vector of paths for images
+    vector<path> images;
 
-    for (const auto& entry : directory_iterator(img_path)) {
-        if (entry.is_regular_file()) {
-            if (entry.path().extension() == ".jpg") {
-                first_image = entry.path();
-                break;
-            }
+    for (const auto& entry : directory_iterator(img_path))
+    {
+        if (entry.is_regular_file())
+        {
+            auto ext = entry.path().extension().string();
+
+            if (ext == ".jpg" || ext == ".png")
+                images.push_back(entry.path());
         }
     }
 
-    if (first_image.empty()) {
-        throw std::runtime_error("No JPG images found");
+    sort(images.begin(), images.end());
+    path first_image = images.front();
+
+    if (first_image.empty()) 
+    {
+        throw runtime_error("No JPG images found");
+    }
+    else 
+    { 
+        // Debug Print
+        cout << "Selected first image: " << first_image.string() << endl;
     }
 
-    // Load Image into stb_image
-    cv::Mat img = cv::imread(first_image.string());
-    cv::imshow("Image", img);
-    cv::waitKey(0);
+    int width = 0;
+    int height = 0;
+    int channels = 0;
 
-    // Print Information
-    std::cout << "Image loaded successfully\n";
-    // std::cout << "Width: " << width
-    //           << ", Height: " << height
-    //           << ", Channels: " << channels << "\n";
+    unsigned char* pixels = stbi_load(first_image.string().c_str(),
+                                      &width, &height, &channels, 0);
 
+    if (!pixels) 
+    {
+        cerr << "Failed to load image: " << first_image << "\n";
+        return 1;
+    }
 
-    // Exit
-    stbi_image_free(data);
+    cout << "Loaded image successfully\n";
+    cout << "Width: " << width
+              << ", Height: " << height
+              << ", Channels: " << channels << "\n";
+
+    path out_file = "debug_first_image.png";
+
+    if (!stbi_write_png(out_file.string().c_str(),
+                        width,
+                        height,
+                        channels,
+                        pixels,
+                        width * channels))
+    {
+        cerr << "Failed to save output image\n";
+        stbi_image_free(pixels);
+        return 1;
+    }
+
+    cout << "Saved debug image to: " << out_file << "\n";
+
+    stbi_image_free(pixels);
 
     return 0;
 }
