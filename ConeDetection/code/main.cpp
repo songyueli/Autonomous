@@ -83,8 +83,8 @@ int main(int argc, char** argv)
     sort(images.begin(), images.end());
 
     // -------------------- IMAGE FILTERING --------------------
-
-    
+    path filtered_img_path = out_path / dataset_path.filename();
+    create_directory(filtered_img_path);
 
     for (const path& image_path : images)
     {
@@ -95,8 +95,8 @@ int main(int argc, char** argv)
         unsigned char* pixels = stbi_load(image_path.string().c_str(),
                                       &width, &height, &channels, 0);
 
-        const int min_height_bound = height * 0.4;
-        const int max_height_bound = height * 0.9;
+        const int min_height_bound = height * 0.5;
+        const int max_height_bound = height * 0.8;
 
         if (!pixels) 
         {
@@ -116,28 +116,55 @@ int main(int argc, char** argv)
                 unsigned char g = pixels[pixel_index * 3 + 1];
                 unsigned char b = pixels[pixel_index * 3 + 2];
 
-                if (is_orange_cone(r, g, b))
-                {
-                    output[pixel_index * 3 + 0] = 255;
-                    output[pixel_index * 3 + 1] = 120;
-                    output[pixel_index * 3 + 2] = 0;
-                }
-                else if (is_yellow_cone(r, g, b))
+                // if (is_orange_cone(r, g, b))
+                // {
+                //     output[pixel_index * 3 + 0] = 255;
+                //     output[pixel_index * 3 + 1] = 120;
+                //     output[pixel_index * 3 + 2] = 0;
+                // }
+                // else if (is_yellow_cone(r, g, b))
+                // {
+                //     output[pixel_index * 3 + 0] = 255;
+                //     output[pixel_index * 3 + 1] = 255;
+                //     output[pixel_index * 3 + 2] = b;
+                // }
+                // else if (is_blue_cone(r, g, b))
+                // {
+                //     output[pixel_index * 3 + 0] = r;
+                //     output[pixel_index * 3 + 1] = g;
+                //     output[pixel_index * 3 + 2] = 255;
+                // }
+
+                ConeColor color = classify_pixel(r, g, b);
+
+                if (color == ConeColor::Yellow)
                 {
                     output[pixel_index * 3 + 0] = 255;
                     output[pixel_index * 3 + 1] = 255;
+                    output[pixel_index + 2] = 0;
+                }
+                else if (color == ConeColor::Orange)
+                {
+                    output[pixel_index * 3 + 0] = 255;
+                    output[pixel_index * 3+ 1] = 120;
                     output[pixel_index * 3 + 2] = 0;
                 }
-                else if (is_blue_cone(r, g, b))
+                else if (color == ConeColor::Blue)
                 {
                     output[pixel_index * 3 + 0] = 0;
                     output[pixel_index * 3 + 1] = 0;
                     output[pixel_index * 3 + 2] = 255;
                 }
+                else
+                {
+                    output[pixel_index * 3 + 0] = r / 4;
+                    output[pixel_index * 3 + 1] = g / 4;
+                    output[pixel_index * 3 + 2] = b / 4;
+                }
             }
         }
 
-        path output_file = out_path / dataset_path.filename().string() / image_path.filename();
+        path output_file = filtered_img_path / image_path.filename();
         output_file.replace_extension(".png");
 
         stbi_write_png(
