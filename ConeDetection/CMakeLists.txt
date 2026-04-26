@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Add source files
 file(GLOB SOURCES ${PROJECT_SOURCE_DIR}/code/main.cpp
-                    ${PROJECT_SOURCE_DIR}/code/Cone.cpp
+                    ${PROJECT_SOURCE_DIR}/code/ConeFilter.cpp
                     ${PROJECT_SOURCE_DIR}/code/DBSCAN.cpp)
 
 message(STATUS "OpenCV version: ${OpenCV_VERSION}")

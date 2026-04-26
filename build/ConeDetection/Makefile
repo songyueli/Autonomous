@@ -130,29 +130,29 @@ ConeDetection/fast:
 	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection.dir/build.make ConeDetection/CMakeFiles/ConeDetection.dir/build
 .PHONY : ConeDetection/fast
 
-code/Cone.o: code/Cone.cpp.o
-.PHONY : code/Cone.o
+code/ConeFilter.o: code/ConeFilter.cpp.o
+.PHONY : code/ConeFilter.o
 
 # target to build an object file
-code/Cone.cpp.o:
-	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection.dir/build.make ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.o
-.PHONY : code/Cone.cpp.o
+code/ConeFilter.cpp.o:
+	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection.dir/build.make ConeDetection/CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.o
+.PHONY : code/ConeFilter.cpp.o
 
-code/Cone.i: code/Cone.cpp.i
-.PHONY : code/Cone.i
+code/ConeFilter.i: code/ConeFilter.cpp.i
+.PHONY : code/ConeFilter.i
 
 # target to preprocess a source file
-code/Cone.cpp.i:
-	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection.dir/build.make ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.i
-.PHONY : code/Cone.cpp.i
+code/ConeFilter.cpp.i:
+	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection.dir/build.make ConeDetection/CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.i
+.PHONY : code/ConeFilter.cpp.i
 
-code/Cone.s: code/Cone.cpp.s
-.PHONY : code/Cone.s
+code/ConeFilter.s: code/ConeFilter.cpp.s
+.PHONY : code/ConeFilter.s
 
 # target to generate assembly for a file
-code/Cone.cpp.s:
-	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection.dir/build.make ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.s
-.PHONY : code/Cone.cpp.s
+code/ConeFilter.cpp.s:
+	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection.dir/build.make ConeDetection/CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.s
+.PHONY : code/ConeFilter.cpp.s
 
 code/DBSCAN.o: code/DBSCAN.cpp.o
 .PHONY : code/DBSCAN.o
@@ -211,9 +211,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... ConeDetection"
-	@echo "... code/Cone.o"
-	@echo "... code/Cone.i"
-	@echo "... code/Cone.s"
+	@echo "... code/ConeFilter.o"
+	@echo "... code/ConeFilter.i"
+	@echo "... code/ConeFilter.s"
 	@echo "... code/DBSCAN.o"
 	@echo "... code/DBSCAN.i"
 	@echo "... code/DBSCAN.s"

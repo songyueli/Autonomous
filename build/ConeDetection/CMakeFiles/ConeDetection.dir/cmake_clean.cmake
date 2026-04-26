@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
   "../output/bin/ConeDetection"
   "../output/bin/ConeDetection.pdb"
-  "CMakeFiles/ConeDetection.dir/code/Cone.cpp.o"
-  "CMakeFiles/ConeDetection.dir/code/Cone.cpp.o.d"
+  "CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.o"
+  "CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.o.d"
   "CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.o"
   "CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.o.d"
   "CMakeFiles/ConeDetection.dir/code/main.cpp.o"

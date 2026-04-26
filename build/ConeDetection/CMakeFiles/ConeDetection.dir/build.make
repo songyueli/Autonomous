@@ -69,19 +69,19 @@ include ConeDetection/CMakeFiles/ConeDetection.dir/progress.make
 # Include the compile flags for this target's objects.
 include ConeDetection/CMakeFiles/ConeDetection.dir/flags.make
 
-ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.o: ConeDetection/CMakeFiles/ConeDetection.dir/flags.make
-ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.o: /home/hice1/sli967/Autonomous/ConeDetection/code/Cone.cpp
-ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.o: ConeDetection/CMakeFiles/ConeDetection.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hice1/sli967/Autonomous/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.o"
-	cd /home/hice1/sli967/Autonomous/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.o -MF CMakeFiles/ConeDetection.dir/code/Cone.cpp.o.d -o CMakeFiles/ConeDetection.dir/code/Cone.cpp.o -c /home/hice1/sli967/Autonomous/ConeDetection/code/Cone.cpp
+ConeDetection/CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.o: ConeDetection/CMakeFiles/ConeDetection.dir/flags.make
+ConeDetection/CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.o: /home/hice1/sli967/Autonomous/ConeDetection/code/ConeFilter.cpp
+ConeDetection/CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.o: ConeDetection/CMakeFiles/ConeDetection.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hice1/sli967/Autonomous/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object ConeDetection/CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.o"
+	cd /home/hice1/sli967/Autonomous/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ConeDetection/CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.o -MF CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.o.d -o CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.o -c /home/hice1/sli967/Autonomous/ConeDetection/code/ConeFilter.cpp
 
-ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ConeDetection.dir/code/Cone.cpp.i"
-	cd /home/hice1/sli967/Autonomous/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hice1/sli967/Autonomous/ConeDetection/code/Cone.cpp > CMakeFiles/ConeDetection.dir/code/Cone.cpp.i
+ConeDetection/CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.i"
+	cd /home/hice1/sli967/Autonomous/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hice1/sli967/Autonomous/ConeDetection/code/ConeFilter.cpp > CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.i
 
-ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ConeDetection.dir/code/Cone.cpp.s"
-	cd /home/hice1/sli967/Autonomous/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hice1/sli967/Autonomous/ConeDetection/code/Cone.cpp -o CMakeFiles/ConeDetection.dir/code/Cone.cpp.s
+ConeDetection/CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.s"
+	cd /home/hice1/sli967/Autonomous/build/ConeDetection && /usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hice1/sli967/Autonomous/ConeDetection/code/ConeFilter.cpp -o CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.s
 
 ConeDetection/CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.o: ConeDetection/CMakeFiles/ConeDetection.dir/flags.make
 ConeDetection/CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.o: /home/hice1/sli967/Autonomous/ConeDetection/code/DBSCAN.cpp
@@ -113,14 +113,14 @@ ConeDetection/CMakeFiles/ConeDetection.dir/code/main.cpp.s: cmake_force
 
 # Object files for target ConeDetection
 ConeDetection_OBJECTS = \
-"CMakeFiles/ConeDetection.dir/code/Cone.cpp.o" \
+"CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.o" \
 "CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.o" \
 "CMakeFiles/ConeDetection.dir/code/main.cpp.o"
 
 # External object files for target ConeDetection
 ConeDetection_EXTERNAL_OBJECTS =
 
-output/bin/ConeDetection: ConeDetection/CMakeFiles/ConeDetection.dir/code/Cone.cpp.o
+output/bin/ConeDetection: ConeDetection/CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.o
 output/bin/ConeDetection: ConeDetection/CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.o
 output/bin/ConeDetection: ConeDetection/CMakeFiles/ConeDetection.dir/code/main.cpp.o
 output/bin/ConeDetection: ConeDetection/CMakeFiles/ConeDetection.dir/build.make
