@@ -92,7 +92,6 @@ vector<BoundingBox> cluster_cones(
     vector<bool> visited(n, false);
     int cluster_id = 0;
     
-    // Run DBSCAN
     for (int i = 0; i < n; i++) {
         if (visited[i]) {
             continue;
@@ -153,7 +152,7 @@ vector<BoundingBox> cluster_cones(
 
         // FILTER 4: Density check - much more lenient
         float density = (float)box.pixel_count / (float)(area + 1);
-        if (density < 0.02f) {  // Was 0.03f - now only reject VERY sparse
+        if (density < 0.25f) { 
             continue;
         }
 

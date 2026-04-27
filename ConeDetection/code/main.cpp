@@ -20,8 +20,10 @@ namespace fs = filesystem;
 const fs::path out_path = "filtered_images";
 
 // DBSCAN parameters
-const float eps = 15.0f;        // Maximum distance between points in a cluster
-const int min_pts = 10;         // Minimum points to form a cluster
+const float eps = 3.0f;        // Maximum distance between points in a cluster
+const int min_pts = 30;         // Minimum points to form a cluster
+
+const int num_images_parse = 30;
 
 // Draw rectangle on image
 void draw_rectangle(
@@ -128,7 +130,14 @@ int main(int argc, char** argv) {
     fs::path filtered_img_path = out_path / dataset_path.filename();
     create_directory(filtered_img_path);
 
+    int img_count = 0;
+
     for (const fs::path& image_path : images) {
+        if (++img_count > num_images_parse)
+        {
+            break;
+        }
+
         int width = 0, height = 0, channels = 0;
 
         unsigned char* pixels = stbi_load(
@@ -177,6 +186,9 @@ int main(int argc, char** argv) {
                     output[channel_index + 2] = 0;
                 } else if (color == ConeColor::Orange) {
                     orange_points.push_back({i, j, ConeColor::Orange});
+                    output[channel_index + 0] = 255;
+                    output[channel_index + 1] = 120;
+                    output[channel_index + 2] = 0;
                 } else if (color == ConeColor::Blue) {
                     blue_points.push_back({i, j, ConeColor::Blue});
                     output[channel_index + 0] = 0;
@@ -187,15 +199,14 @@ int main(int argc, char** argv) {
         }
 
         // Adaptive DBSCAN parameters based on scene
-        float eps = scene.is_dark_scene ? 12.0f : 10.0f;  // Larger eps in dark
-        int min_pts = scene.is_dark_scene ? 10 : 15;       // Fewer points needed in dark
+        float eps = scene.is_dark_scene ? 12.0f : 5.0f;  // Larger eps in dark
+        int min_pts = scene.is_dark_scene ? 10 : 40;       // Fewer points needed in dark
 
         // Rest of clustering code stays the same...
         vector<BoundingBox> yellow_boxes = cluster_cones(yellow_points, eps, min_pts);
         vector<BoundingBox> orange_boxes = cluster_cones(orange_points, eps, min_pts);
         vector<BoundingBox> blue_boxes = cluster_cones(blue_points, eps, min_pts);
         
-
         yellow_boxes = merge_overlapping_boxes(yellow_boxes);
         orange_boxes = merge_overlapping_boxes(orange_boxes);
         blue_boxes = merge_overlapping_boxes(blue_boxes);

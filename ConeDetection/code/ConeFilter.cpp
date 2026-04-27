@@ -1,7 +1,7 @@
 #include "ConeFilter.h"
 #include <algorithm>
 #include <cmath>
-
+#include <iostream>
 
 SceneStats analyze_scene(const unsigned char* pixels, int width, int height,
                         int min_height, int max_height) {
@@ -74,7 +74,7 @@ ConeColor classify_pixel(unsigned char r, unsigned char g, unsigned char b,
         b > r * 1.15f &&                     // Blue exceeds red by 15%
         b > g * 1.15f &&                     // Blue exceeds green by 15%
         brightness > 30 &&                   // Not completely black
-        brightness < 400                     // Not white/overexposed
+        brightness < 500                     // Not white/overexposed
     );
     
     // Strategy 2: HSV method for well-lit blue
@@ -94,7 +94,7 @@ ConeColor classify_pixel(unsigned char r, unsigned char g, unsigned char b,
     );
     
     // Accept if ANY strategy identifies it as blue
-    if (blue_by_ratio) // || blue_by_hsv || blue_by_absolute) 
+    if (blue_by_ratio) //blue_by_hsv) // || blue_by_absolute) 
     {
         return ConeColor::Blue;
     }
@@ -108,9 +108,9 @@ ConeColor classify_pixel(unsigned char r, unsigned char g, unsigned char b,
     
     // Warm color hue range
     bool in_warm_range = (hsv.h >= 15.0f && hsv.h <= 70.0f);
-    if (!in_warm_range) {
-        return ConeColor::None;
-    }
+    // if (!in_warm_range) {
+    //     return ConeColor::None;
+    // }
     
     // Adaptive saturation threshold
     bool is_bright_pixel = hsv.v > 0.65f;
@@ -125,21 +125,48 @@ ConeColor classify_pixel(unsigned char r, unsigned char g, unsigned char b,
     if (hsv.s < sat_threshold) {
         return ConeColor::None;
     }
-    
+
     // Additional RGB check for orange/yellow
     // Orange/yellow should have r > b and g > b
     if (b > r || b > g) {
         return ConeColor::None;
     }
     
-    // ORANGE: 15-35° hue
-    if (hsv.h >= 15.0f && hsv.h < 35.0f) {
+    float rg_ratio = (float)r / ((float)g + 1.0f);
+
+    // Strong orange region
+    if (hsv.h < 25.0f)
+    { //(hsv.h >= 5.0f && hsv.h < 25.0f) {
         return ConeColor::Orange;
     }
-    
-    // YELLOW: 35-70° hue
-    if (hsv.h >= 35.0f && hsv.h <= 70.0f) {
+
+    // Strong yellow region
+    if (hsv.h >= 42.0f && hsv.h <= 70.0f) {
         return ConeColor::Yellow;
+    }
+
+    // Dark yellow rescue
+    if (hsv.h >= 35.0f && hsv.h <= 70.0f &&
+        hsv.v > 0.07f &&
+        hsv.s > 0.11f &&
+        r > 35 &&
+        g > 30 &&
+        b < 120 &&
+        r > b * 1.25f &&
+        g > b * 1.15f &&
+        rg_ratio < 1.65f)
+    {
+        return ConeColor::Yellow;
+    }
+
+    // Ambiguous middle band (28°–42°)
+    // Use RGB ratio to separate
+    if (hsv.h >= 28.0f && hsv.h < 42.0f)
+    {
+        if (rg_ratio >= 1.4f)
+            return ConeColor::Orange;
+        else
+            return ConeColor::Yellow;
     }
     
     return ConeColor::None;
@@ -163,15 +190,23 @@ vector<BoundingBox> merge_overlapping_boxes(vector<BoundingBox>& boxes) {
             // Check if boxes overlap or are very close vertically
             int x_overlap = min(current.x_max, boxes[j].x_max) - 
                            max(current.x_min, boxes[j].x_min);
-            int y_gap = max(0, max(current.y_min, boxes[j].y_min) - 
-                               min(current.y_max, boxes[j].y_max));
-            
-            // Merge if significant horizontal overlap and small vertical gap
-            if (x_overlap > 10 && y_gap < 25) {
-                current.x_min = min(current.x_min, boxes[j].x_min);
-                current.y_min = min(current.y_min, boxes[j].y_min);
-                current.x_max = max(current.x_max, boxes[j].x_max);
-                current.y_max = max(current.y_max, boxes[j].y_max);
+            int y_gap = std::max(0,
+                std::max(current.y_min, boxes[j].y_min) -
+                std::min(current.y_max, boxes[j].y_max)
+            );            
+            int current_cx = (current.x_min + current.x_max) / 2;
+            int other_cx   = (boxes[j].x_min + boxes[j].x_max) / 2;
+
+            int x_dist = std::abs(current_cx - other_cx);
+
+            bool horizontally_related = x_overlap > 15 || x_dist < 25;
+
+            if (horizontally_related && y_gap < 45)
+            {
+                current.x_min = std::min(current.x_min, boxes[j].x_min);
+                current.y_min = std::min(current.y_min, boxes[j].y_min);
+                current.x_max = std::max(current.x_max, boxes[j].x_max);
+                current.y_max = std::max(current.y_max, boxes[j].y_max);
                 current.pixel_count += boxes[j].pixel_count;
                 used[j] = true;
             }
