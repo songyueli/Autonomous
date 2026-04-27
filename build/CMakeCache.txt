@@ -248,6 +248,24 @@ LiSongYue_HW1_SOURCE_DIR:STATIC=/home/hice1/sli967/Autonomous
 //The directory containing a CMake configuration file for OpenCV.
 OpenCV_DIR:PATH=/usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-12.3.0/opencv-4.6.0-vpjpetcfvwudnb44jhbymrmgagapjlap/lib64/cmake/opencv4
 
+//CXX compiler flags for OpenMP parallelization
+OpenMP_CXX_FLAGS:STRING=-fopenmp
+
+//CXX compiler libraries for OpenMP parallelization
+OpenMP_CXX_LIB_NAMES:STRING=gomp;pthread
+
+//C compiler flags for OpenMP parallelization
+OpenMP_C_FLAGS:STRING=-fopenmp
+
+//C compiler libraries for OpenMP parallelization
+OpenMP_C_LIB_NAMES:STRING=gomp;pthread
+
+//Path to the gomp library for OpenMP
+OpenMP_gomp_LIBRARY:FILEPATH=/usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/lib64/libgomp.so
+
+//Path to the pthread library for OpenMP
+OpenMP_pthread_LIBRARY:FILEPATH=/lib64/libpthread.a
+
 
 ########################
 # INTERNAL cache entries
@@ -400,6 +418,36 @@ CMAKE_UNAME:INTERNAL=/usr/bin/uname
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding OpenCV
 FIND_PACKAGE_MESSAGE_DETAILS_OpenCV:INTERNAL=[/storage/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-12.3.0/opencv-4.6.0-vpjpetcfvwudnb44jhbymrmgagapjlap][v4.6.0()]
+//Details about finding OpenMP
+FIND_PACKAGE_MESSAGE_DETAILS_OpenMP:INTERNAL=[TRUE][TRUE][c ][v4.5()]
+//Details about finding OpenMP_C
+FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_C:INTERNAL=[-fopenmp][/usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/lib64/libgomp.so][/lib64/libpthread.a][v4.5()]
+//Details about finding OpenMP_CXX
+FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_CXX:INTERNAL=[-fopenmp][/usr/local/pace-apps/spack/packages/linux-rhel9-x86_64_v3/gcc-11.3.1/gcc-12.3.0-ukkkutsxfl5kpnnaxflpkq2jtliwthfz/lib64/libgomp.so][/lib64/libpthread.a][v4.5()]
+//Result of TRY_COMPILE
+OpenMP_COMPILE_RESULT_CXX_fopenmp:INTERNAL=TRUE
+//Result of TRY_COMPILE
+OpenMP_COMPILE_RESULT_C_fopenmp:INTERNAL=TRUE
+//ADVANCED property for variable: OpenMP_CXX_FLAGS
+OpenMP_CXX_FLAGS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenMP_CXX_LIB_NAMES
+OpenMP_CXX_LIB_NAMES-ADVANCED:INTERNAL=1
+//CXX compiler's OpenMP specification date
+OpenMP_CXX_SPEC_DATE:INTERNAL=201511
+//ADVANCED property for variable: OpenMP_C_FLAGS
+OpenMP_C_FLAGS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenMP_C_LIB_NAMES
+OpenMP_C_LIB_NAMES-ADVANCED:INTERNAL=1
+//C compiler's OpenMP specification date
+OpenMP_C_SPEC_DATE:INTERNAL=201511
+//Result of TRY_COMPILE
+OpenMP_SPECTEST_CXX_:INTERNAL=TRUE
+//Result of TRY_COMPILE
+OpenMP_SPECTEST_C_:INTERNAL=TRUE
+//ADVANCED property for variable: OpenMP_gomp_LIBRARY
+OpenMP_gomp_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: OpenMP_pthread_LIBRARY
+OpenMP_pthread_LIBRARY-ADVANCED:INTERNAL=1
 //linker supports push/pop state
 _CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
 

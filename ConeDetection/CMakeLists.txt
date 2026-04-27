@@ -6,6 +6,7 @@ project(ConeDetection VERSION 1.0)
 
 # Need OpenCV
 # find_package(OpenCV REQUIRED) # won't work for displaying images
+find_package(OpenMP REQUIRED)
 
 # Specify the C++ standard
 set(CMAKE_CXX_STANDARD 17)
