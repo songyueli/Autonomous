@@ -25,7 +25,7 @@ const int min_pts = 30;         // Minimum points to form a cluster
 
 const int num_images_parse = 30;
 
-// Draw rectangle on image
+// Draw rectangle on image with no MP
 void draw_rectangle(
     vector<unsigned char>& image,
     int width,
@@ -215,17 +215,6 @@ int main(int argc, char** argv) {
         cout << "  Yellow cones: " << yellow_boxes.size() << endl;
         cout << "  Orange cones: " << orange_boxes.size() << endl;
         cout << "  Blue cones: " << blue_boxes.size() << endl;
-
-        // for (int j = 0; j < height; j++) {
-        //     for (int i = 0; i < width; i++) {
-        //         int pixel_index = (j * width) + i;
-        //         int channel_index = pixel_index * 3;
-
-        //         output[channel_index + 0] = pixels[channel_index + 0] / 4;
-        //         output[channel_index + 1] = pixels[channel_index + 1] / 4;
-        //         output[channel_index + 2] = pixels[channel_index + 2] / 4;
-        //     }
-        // }
 
         // Draw bounding boxes
         for (const auto& box : yellow_boxes) {

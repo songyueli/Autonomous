@@ -5,8 +5,8 @@ cmake_minimum_required(VERSION 3.18)  # 3.18+ needed for CUDA support
 project(ConeDetection VERSION 1.0 LANGUAGES CXX)
  
 # Options for different build types
-option(USE_OPENMP "Enable OpenMP parallelization" ON)
-option(USE_CUDA "Enable CUDA GPU acceleration" ON)
+option(USE_OPENMP "Enable OpenMP parallelization" OFF)
+option(USE_CUDA "Enable CUDA GPU acceleration" OFF)
  
 # Specify the C++ standard
 set(CMAKE_CXX_STANDARD 17)
@@ -16,11 +16,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -march=native")
  
 # Find OpenMP if requested
-if(USE_OPENMP)
-    find_package(OpenMP REQUIRED)
-    message(STATUS "OpenMP found: ${OpenMP_CXX_VERSION}")
-endif()
- 
+find_package(OpenMP REQUIRED)
+message(STATUS "OpenMP found: ${OpenMP_CXX_VERSION}")
+
 # Enable CUDA if requested
 if(USE_CUDA)
     enable_language(CUDA)

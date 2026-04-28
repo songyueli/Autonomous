@@ -6,6 +6,7 @@
 #include <stdexcept>
 #include <cstdint>
 #include <omp.h>
+#include <chrono>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -14,74 +15,14 @@
 #include "stb_image_write.h"
 
 #include "ConeFilter.h"
+#include "Draw.h"
 
 using namespace std;
+using namespace std::chrono;
 namespace fs = filesystem;
 
 const fs::path out_path = "filtered_images";
 const int num_images_parse = 100;
-
-// Draw rectangle on image
-void draw_rectangle(
-    vector<unsigned char>& image,
-    int width,
-    int height,
-    const BoundingBox& box,
-    unsigned char r,
-    unsigned char g,
-    unsigned char b,
-    int thickness = 2
-) {
-    // Draw top and bottom edges
-    for (int x = box.x_min; x <= box.x_max; x++) {
-        if (x < 0 || x >= width) continue;
-        
-        for (int t = 0; t < thickness; t++) {
-            // Top edge
-            int y_top = box.y_min + t;
-            if (y_top >= 0 && y_top < height) {
-                int idx = (y_top * width + x) * 3;
-                image[idx + 0] = r;
-                image[idx + 1] = g;
-                image[idx + 2] = b;
-            }
-            
-            // Bottom edge
-            int y_bot = box.y_max - t;
-            if (y_bot >= 0 && y_bot < height) {
-                int idx = (y_bot * width + x) * 3;
-                image[idx + 0] = r;
-                image[idx + 1] = g;
-                image[idx + 2] = b;
-            }
-        }
-    }
-    
-    // Draw left and right edges
-    for (int y = box.y_min; y <= box.y_max; y++) {
-        if (y < 0 || y >= height) continue;
-        
-        for (int t = 0; t < thickness; t++) {
-            // Left edge
-            int x_left = box.x_min + t;
-            if (x_left >= 0 && x_left < width) {
-                int idx = (y * width + x_left) * 3;
-                image[idx + 0] = r;
-                image[idx + 1] = g;
-                image[idx + 2] = b;
-            }
-            
-            // Right edge
-            int x_right = box.x_max - t;
-            if (x_right >= 0 && x_right < width) {
-                int idx = (y * width + x_right) * 3;
-                image[idx + 0] = r;
-                image[idx + 1] = g;
-                image[idx + 2] = b;
-            }
-        }
-    }
-}
 
 // Process a single image (used in parallel loop)
 void process_image(const fs::path& image_path, const fs::path& filtered_img_path) {
@@ -265,14 +206,37 @@ int main(int argc, char** argv) {
     create_directory(filtered_img_path);
 
     // Set number of threads (use all available cores)
+    // int num_threads = omp_get_max_threads();
+    // omp_set_num_threads(num_threads);
+    // cout << "Processing with " << num_threads << " threads\n";
+
+    // // Parallel loop over images
+    // #pragma omp parallel for schedule(dynamic)
+    // for (size_t i = 0; i < images.size(); i++) {
+    //     process_image(images[i], filtered_img_path);
+    // }
+
+    // Set number of threads for work INSIDE each image
     int num_threads = omp_get_max_threads();
     omp_set_num_threads(num_threads);
-    cout << "Processing with " << num_threads << " threads\n";
 
-    // Parallel loop over images
-    #pragma omp parallel for schedule(dynamic)
+    cout << "Processing images one at a time\n";
+    cout << "Using up to " << num_threads 
+        << " threads inside each image\n";
+
     for (size_t i = 0; i < images.size(); i++) {
+        auto process_start = high_resolution_clock::now();
+        
+        cout << "\nProcessing image " << (i + 1)
+            << " / " << images.size()
+            << ": " << images[i].filename() << endl;
+
         process_image(images[i], filtered_img_path);
+
+        auto process_end = high_resolution_clock::now();
+        auto process_time = duration_cast<microseconds>(process_end - process_start).count();
+
+        cout << "Processing Time: " << process_time / 1000.0 << endl;
     }
 
     return 0;
