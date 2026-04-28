@@ -4,13 +4,16 @@
 #include <iostream>
 
 SceneStats analyze_scene(const unsigned char* pixels, int width, int height,
-                        int min_height, int max_height) {
+                        int min_height, int max_height) 
+{
     long long brightness_sum = 0;
     int pixel_count = 0;
     
     // Sample every 10th pixel for speed
-    for (int j = min_height; j < max_height; j += 10) {
-        for (int i = 0; i < width; i += 10) {
+    for (int j = min_height; j < max_height; j += 10) 
+    {
+        for (int i = 0; i < width; i += 10) 
+        {
             int idx = (j * width + i) * 3;
             int brightness = pixels[idx] + pixels[idx + 1] + pixels[idx + 2];
             brightness_sum += brightness;
@@ -26,7 +29,8 @@ SceneStats analyze_scene(const unsigned char* pixels, int width, int height,
 }
 
 
-HSV rgb_to_hsv(unsigned char r, unsigned char g, unsigned char b) {
+HSV rgb_to_hsv(unsigned char r, unsigned char g, unsigned char b) 
+{
     float rf = r / 255.0f;
     float gf = g / 255.0f;
     float bf = b / 255.0f;
@@ -39,13 +43,20 @@ HSV rgb_to_hsv(unsigned char r, unsigned char g, unsigned char b) {
     hsv.v = maxc;
     hsv.s = (maxc > 0.0f) ? (delta / maxc) : 0.0f;
     
-    if (delta == 0.0f) {
+    if (delta == 0.0f) 
+    {
         hsv.h = 0.0f;
-    } else if (maxc == rf) {
+    } 
+    else if (maxc == rf) 
+    {
         hsv.h = 60.0f * fmod((gf - bf) / delta, 6.0f);
-    } else if (maxc == gf) {
+    } 
+    else if (maxc == gf) 
+    {
         hsv.h = 60.0f * ((bf - rf) / delta + 2.0f);
-    } else {
+    } 
+    else 
+    {
         hsv.h = 60.0f * ((rf - gf) / delta + 4.0f);
     }
     
@@ -55,12 +66,14 @@ HSV rgb_to_hsv(unsigned char r, unsigned char g, unsigned char b) {
 }
 
 ConeColor classify_pixel(unsigned char r, unsigned char g, unsigned char b, 
-                        bool is_dark_scene) {
+                        bool is_dark_scene) 
+{
     
     int brightness = r + g + b;
     
     // Filter completely black pixels
-    if (brightness < 25) {
+    if (brightness < 25) 
+    {
         return ConeColor::None;
     }
     
@@ -102,33 +115,33 @@ ConeColor classify_pixel(unsigned char r, unsigned char g, unsigned char b,
     // ========== ORANGE/YELLOW DETECTION ==========
     
     // For HSV-based detection
-    if (hsv.v < (is_dark_scene ? 0.10f : 0.18f)) {
+    if (hsv.v < (is_dark_scene ? 0.10f : 0.18f)) 
+    {
         return ConeColor::None;
     }
-    
-    // Warm color hue range
-    bool in_warm_range = (hsv.h >= 15.0f && hsv.h <= 70.0f);
-    // if (!in_warm_range) {
-    //     return ConeColor::None;
-    // }
     
     // Adaptive saturation threshold
     bool is_bright_pixel = hsv.v > 0.65f;
     float sat_threshold;
     
-    if (is_dark_scene) {
+    if (is_dark_scene) 
+    {
         sat_threshold = is_bright_pixel ? 0.18f : 0.25f;
-    } else {
+    } 
+    else 
+    {
         sat_threshold = is_bright_pixel ? 0.22f : 0.35f;
     }
     
-    if (hsv.s < sat_threshold) {
+    if (hsv.s < sat_threshold) 
+    {
         return ConeColor::None;
     }
 
     // Additional RGB check for orange/yellow
     // Orange/yellow should have r > b and g > b
-    if (b > r || b > g) {
+    if (b > r || b > g) 
+    {
         return ConeColor::None;
     }
     
@@ -136,12 +149,13 @@ ConeColor classify_pixel(unsigned char r, unsigned char g, unsigned char b,
 
     // Strong orange region
     if (hsv.h < 25.0f)
-    { //(hsv.h >= 5.0f && hsv.h < 25.0f) {
+    {
         return ConeColor::Orange;
     }
 
     // Strong yellow region
-    if (hsv.h >= 42.0f && hsv.h <= 70.0f) {
+    if (hsv.h >= 42.0f && hsv.h <= 70.0f) 
+    {
         return ConeColor::Yellow;
     }
 
@@ -173,18 +187,21 @@ ConeColor classify_pixel(unsigned char r, unsigned char g, unsigned char b,
 }
 
 // Merge overlapping boxes of similar colors
-vector<BoundingBox> merge_overlapping_boxes(vector<BoundingBox>& boxes) {
+vector<BoundingBox> merge_overlapping_boxes(vector<BoundingBox>& boxes) 
+{
     vector<BoundingBox> merged;
     vector<bool> used(boxes.size(), false);
     
-    for (size_t i = 0; i < boxes.size(); i++) {
+    for (size_t i = 0; i < boxes.size(); i++) 
+    {
         if (used[i]) continue;
         
         BoundingBox current = boxes[i];
         used[i] = true;
         
         // Check for vertical overlap with same color
-        for (size_t j = i + 1; j < boxes.size(); j++) {
+        for (size_t j = i + 1; j < boxes.size(); j++) 
+        {
             if (used[j] || boxes[j].color != current.color) continue;
             
             // Check if boxes overlap or are very close vertically

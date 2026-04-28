@@ -25,7 +25,8 @@ const fs::path out_path = "filtered_images";
 const int num_images_parse = 100;
 
 // Process a single image (used in parallel loop)
-void process_image(const fs::path& image_path, const fs::path& filtered_img_path) {
+void process_image(const fs::path& image_path, const fs::path& filtered_img_path) 
+{
     int width = 0, height = 0, channels = 0;
 
     unsigned char* pixels = stbi_load(
@@ -68,8 +69,10 @@ void process_image(const fs::path& image_path, const fs::path& filtered_img_path
         vector<Point> local_yellow, local_orange, local_blue;
         
         #pragma omp for nowait schedule(dynamic, 100)
-        for (int j = min_height_bound; j < max_height_bound; j++) {
-            for (int i = 0; i < width; i++) {
+        for (int j = min_height_bound; j < max_height_bound; j++) 
+        {
+            for (int i = 0; i < width; i++) 
+            {
                 int pixel_index = (j * width) + i;
                 int channel_index = pixel_index * 3;
 
@@ -79,17 +82,22 @@ void process_image(const fs::path& image_path, const fs::path& filtered_img_path
 
                 ConeColor color = classify_pixel(r, g, b, scene.is_dark_scene);
 
-                if (color == ConeColor::Yellow) {
+                if (color == ConeColor::Yellow) 
+                {
                     local_yellow.push_back({i, j, ConeColor::Yellow});
                     output[channel_index + 0] = 255;
                     output[channel_index + 1] = 255;
                     output[channel_index + 2] = 0;
-                } else if (color == ConeColor::Orange) {
+                } 
+                else if (color == ConeColor::Orange) 
+                {
                     local_orange.push_back({i, j, ConeColor::Orange});
                     output[channel_index + 0] = 255;
                     output[channel_index + 1] = 120;
                     output[channel_index + 2] = 0;
-                } else if (color == ConeColor::Blue) {
+                } 
+                else if (color == ConeColor::Blue) 
+                {
                     local_blue.push_back({i, j, ConeColor::Blue});
                     output[channel_index + 0] = 0;
                     output[channel_index + 1] = 0;
@@ -129,13 +137,16 @@ void process_image(const fs::path& image_path, const fs::path& filtered_img_path
     }
 
     // Draw bounding boxes
-    for (const auto& box : yellow_boxes) {
+    for (const auto& box : yellow_boxes) 
+    {
         draw_rectangle(output, width, height, box, 255, 255, 0, 3);
     }
-    for (const auto& box : orange_boxes) {
+    for (const auto& box : orange_boxes) 
+    {
         draw_rectangle(output, width, height, box, 255, 120, 0, 3);
     }
-    for (const auto& box : blue_boxes) {
+    for (const auto& box : blue_boxes) 
+    {
         draw_rectangle(output, width, height, box, 0, 100, 255, 3);
     }
 
@@ -157,17 +168,20 @@ void process_image(const fs::path& image_path, const fs::path& filtered_img_path
     stbi_image_free(pixels);
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv) 
+{
     create_directories(out_path);
 
-    if (argc != 2) {
+    if (argc != 2) 
+    {
         cerr << "Usage: " << argv[0] << " <dataset_path>\n";
         return 1;
     }
 
     fs::path dataset_path = argv[1];
 
-    if (!fs::exists(dataset_path)) {
+    if (!fs::exists(dataset_path)) 
+    {
         cerr << "ERROR: File path does not exist\n";
         return 1;
     }
@@ -177,44 +191,40 @@ int main(int argc, char** argv) {
     fs::path ann_path = dataset_path / "ann";
     fs::path img_path = dataset_path / "img";
 
-    if (!exists(ann_path) || !is_directory(ann_path)) {
+    if (!exists(ann_path) || !is_directory(ann_path)) 
+    {
         throw runtime_error("ann folder missing");
     }
 
-    if (!exists(img_path) || !is_directory(img_path)) {
+    if (!exists(img_path) || !is_directory(img_path)) 
+    {
         throw runtime_error("img folder missing");
     }
 
     vector<fs::path> images;
 
-    for (const auto& entry : fs::directory_iterator(img_path)) {
-        if (entry.is_regular_file()) {
+    for (const auto& entry : fs::directory_iterator(img_path)) 
+    {
+        if (entry.is_regular_file()) 
+        {
             auto ext = entry.path().extension().string();
             if (ext == ".jpg" || ext == ".png")
+            {
                 images.push_back(entry.path());
+            }
         }
     }
 
     sort(images.begin(), images.end());
 
     // Limit to num_images_parse
-    if (images.size() > num_images_parse) {
+    if (images.size() > num_images_parse) 
+    {
         images.resize(num_images_parse);
     }
 
     fs::path filtered_img_path = out_path / dataset_path.filename();
     create_directory(filtered_img_path);
-
-    // Set number of threads (use all available cores)
-    // int num_threads = omp_get_max_threads();
-    // omp_set_num_threads(num_threads);
-    // cout << "Processing with " << num_threads << " threads\n";
-
-    // // Parallel loop over images
-    // #pragma omp parallel for schedule(dynamic)
-    // for (size_t i = 0; i < images.size(); i++) {
-    //     process_image(images[i], filtered_img_path);
-    // }
 
     // Set number of threads for work INSIDE each image
     int num_threads = omp_get_max_threads();
@@ -224,7 +234,8 @@ int main(int argc, char** argv) {
     cout << "Using up to " << num_threads 
         << " threads inside each image\n";
 
-    for (size_t i = 0; i < images.size(); i++) {
+    for (size_t i = 0; i < images.size(); i++) 
+    {
         auto process_start = high_resolution_clock::now();
         
         cout << "\nProcessing image " << (i + 1)

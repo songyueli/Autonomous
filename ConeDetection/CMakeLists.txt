@@ -1,5 +1,5 @@
 # Minimum CMake version required
-cmake_minimum_required(VERSION 3.18)  # 3.18+ needed for CUDA support
+cmake_minimum_required(VERSION 3.18)
  
 # Project name and version
 project(ConeDetection VERSION 1.0 LANGUAGES CXX)
@@ -15,7 +15,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Optimization flags
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -march=native")
  
-# Find OpenMP if requested
+# Find OpenMP
 find_package(OpenMP REQUIRED)
 message(STATUS "OpenMP found: ${OpenMP_CXX_VERSION}")
 
@@ -24,8 +24,6 @@ if(USE_CUDA)
     enable_language(CUDA)
     find_package(CUDAToolkit REQUIRED)
     
-    # Set CUDA architecture (adjust for your GPU)
-    # RTX 30xx: 86, RTX 40xx: 89, RTX 20xx: 75, GTX 10xx: 61
     set(CMAKE_CUDA_ARCHITECTURES 75)
     
     message(STATUS "CUDA found: ${CUDAToolkit_VERSION}")
@@ -105,19 +103,16 @@ message(STATUS "")
  
 # Installation
 install(TARGETS ${EXECUTABLE_NAME} DESTINATION bin)
- 
-# Custom targets for easy building of different versions
+
 add_custom_target(build-all
-    COMMENT "Build all versions"
-)
- 
-# Add custom commands to build all versions
-add_custom_command(
-    TARGET build-all
-    POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -DUSE_OPENMP=OFF -DUSE_CUDA=OFF ${PROJECT_SOURCE_DIR}
-    COMMAND ${CMAKE_COMMAND} --build .
-    COMMAND ${CMAKE_COMMAND} -DUSE_OPENMP=ON -DUSE_CUDA=OFF ${PROJECT_SOURCE_DIR}
-    COMMAND ${CMAKE_COMMAND} --build .
-    COMMENT "Building all CPU versions..."
+    COMMAND ${CMAKE_COMMAND} -S ${PROJECT_SOURCE_DIR} -B build_cpu -DUSE_OPENMP=OFF -DUSE_CUDA=OFF
+    COMMAND ${CMAKE_COMMAND} --build build_cpu -j24
+
+    COMMAND ${CMAKE_COMMAND} -S ${PROJECT_SOURCE_DIR} -B build_openmp -DUSE_OPENMP=ON -DUSE_CUDA=OFF
+    COMMAND ${CMAKE_COMMAND} --build build_openmp -j24
+
+    COMMAND ${CMAKE_COMMAND} -S ${PROJECT_SOURCE_DIR} -B build_hybrid -DUSE_OPENMP=ON -DUSE_CUDA=ON
+    COMMAND ${CMAKE_COMMAND} --build build_hybrid -j24
+
+    COMMENT "Building all versions (CPU, OpenMP, CUDA, Hybrid)"
 )

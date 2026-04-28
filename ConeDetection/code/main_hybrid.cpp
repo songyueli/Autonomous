@@ -1,7 +1,9 @@
 /**
- * Real-time sequential image processing with intra-image parallelization
- * Mimics actual autonomous vehicle operation: images arrive one at a time
- * Parallelization happens WITHIN each image, not across multiple images
+ * Authors: Song Yue David Li and Adish Mittal
+ * Last Date Modified: 4/28/2026
+ * Class: ECE 4122
+ * 
+ * Description: main_hybrid file that runs a combination of CUDA and OpenMP
  */
 
 #include <iostream>
@@ -31,17 +33,20 @@ namespace fs = filesystem;
 const fs::path out_path = "filtered_images";
 const int num_images_parse = 100;
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv) 
+{
     create_directories(out_path);
 
-    if (argc != 2) {
+    if (argc != 2) 
+    {
         cerr << "Usage: " << argv[0] << " <dataset_path>\n";
         return 1;
     }
 
     fs::path dataset_path = argv[1];
 
-    if (!fs::exists(dataset_path)) {
+    if (!fs::exists(dataset_path)) 
+    {
         cerr << "ERROR: File path does not exist\n";
         return 1;
     }
@@ -51,17 +56,20 @@ int main(int argc, char** argv) {
     fs::path ann_path = dataset_path / "ann";
     fs::path img_path = dataset_path / "img";
 
-    if (!exists(ann_path) || !is_directory(ann_path)) {
+    if (!exists(ann_path) || !is_directory(ann_path)) 
+    {
         throw runtime_error("ann folder missing");
     }
 
-    if (!exists(img_path) || !is_directory(img_path)) {
+    if (!exists(img_path) || !is_directory(img_path)) 
+    {
         throw runtime_error("img folder missing");
     }
 
     vector<fs::path> images;
 
-    for (const auto& entry : fs::directory_iterator(img_path)) {
+    for (const auto& entry : fs::directory_iterator(img_path)) 
+    {
         if (entry.is_regular_file()) {
             auto ext = entry.path().extension().string();
             if (ext == ".jpg" || ext == ".png")
@@ -84,8 +92,10 @@ int main(int argc, char** argv) {
     int img_count = 0;
     
     // SEQUENTIAL image processing (mimics real-time stream)
-    for (const fs::path& image_path : images) {
-        if (++img_count > num_images_parse) {
+    for (const fs::path& image_path : images) 
+    {
+        if (++img_count > num_images_parse) 
+        {
             break;
         }
 
@@ -98,7 +108,8 @@ int main(int argc, char** argv) {
             &width, &height, &channels, 0
         );
 
-        if (!pixels) {
+        if (!pixels) 
+        {
             cerr << "Failed to load image: " << image_path << "\n";
             continue;
         }
@@ -199,19 +210,22 @@ int main(int argc, char** argv) {
         
         // Draw all yellow boxes
         #pragma omp parallel for if(yellow_boxes.size() > 5)
-        for (size_t i = 0; i < yellow_boxes.size(); i++) {
+        for (size_t i = 0; i < yellow_boxes.size(); i++) 
+        {
             draw_rectangle(output, width, height, yellow_boxes[i], 255, 255, 0, 3);
         }
         
         // Draw all orange boxes
         #pragma omp parallel for if(orange_boxes.size() > 5)
-        for (size_t i = 0; i < orange_boxes.size(); i++) {
+        for (size_t i = 0; i < orange_boxes.size(); i++) 
+        {
             draw_rectangle(output, width, height, orange_boxes[i], 255, 120, 0, 3);
         }
         
         // Draw all blue boxes
         #pragma omp parallel for if(blue_boxes.size() > 5)
-        for (size_t i = 0; i < blue_boxes.size(); i++) {
+        for (size_t i = 0; i < blue_boxes.size(); i++) 
+        {
             draw_rectangle(output, width, height, blue_boxes[i], 0, 100, 255, 3);
         }
         

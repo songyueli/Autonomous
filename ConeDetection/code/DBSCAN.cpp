@@ -16,14 +16,16 @@
 using namespace std;
 
 // Calculate Euclidean distance between two points
-inline float distance(const Point& a, const Point& b) {
+inline float distance(const Point& a, const Point& b) 
+{
     float dx = a.x - b.x;
     float dy = a.y - b.y;
     return sqrt(dx * dx + dy * dy);
 }
 
 // Find all neighbors within eps distance - OPTIMIZED
-vector<int> region_query(const vector<Point>& points, int point_idx, float eps) {
+vector<int> region_query(const vector<Point>& points, int point_idx, float eps) 
+{
     vector<int> neighbors;
     const int n = points.size();
     
@@ -31,9 +33,12 @@ vector<int> region_query(const vector<Point>& points, int point_idx, float eps) 
     neighbors.reserve(n / 10);
     
     // For small datasets, parallelization overhead is not worth it
-    if (n < 1000) {
-        for (int i = 0; i < n; i++) {
-            if (distance(points[point_idx], points[i]) <= eps) {
+    if (n < 1000) 
+    {
+        for (int i = 0; i < n; i++) 
+        {
+            if (distance(points[point_idx], points[i]) <= eps) 
+            {
                 neighbors.push_back(i);
             }
         }
@@ -51,15 +56,18 @@ vector<int> region_query(const vector<Point>& points, int point_idx, float eps) 
         thread_neighbors[tid].reserve(n / (10 * num_threads));
         
         #pragma omp for nowait
-        for (int i = 0; i < n; i++) {
-            if (distance(points[point_idx], points[i]) <= eps) {
+        for (int i = 0; i < n; i++) 
+        {
+            if (distance(points[point_idx], points[i]) <= eps) 
+            {
                 thread_neighbors[tid].push_back(i);
             }
         }
     }
     
     // Merge all thread results
-    for (int t = 0; t < num_threads; t++) {
+    for (int t = 0; t < num_threads; t++) 
+    {
         neighbors.insert(neighbors.end(), 
                         thread_neighbors[t].begin(), 
                         thread_neighbors[t].end());
@@ -77,26 +85,31 @@ void expand_cluster(
     float eps,
     int min_pts,
     vector<bool>& visited
-) {
+) 
+{
     vector<int> seeds = region_query(points, point_idx, eps);
     
-    if (seeds.size() < min_pts) {
+    if (seeds.size() < min_pts) 
+    {
         labels[point_idx] = -1; // Mark as noise
         return;
     }
     
     // All points in seeds are part of this cluster
     // CANNOT parallelize this - race condition on labels array
-    for (int seed_idx : seeds) {
+    for (int seed_idx : seeds) 
+    {
         labels[seed_idx] = cluster_id;
     }
     
     // Process each seed point
     // CANNOT parallelize outer loop - seeds vector is modified during iteration
-    for (size_t i = 0; i < seeds.size(); i++) {
+    for (size_t i = 0; i < seeds.size(); i++) 
+    {
         int current_idx = seeds[i];
         
-        if (visited[current_idx]) {
+        if (visited[current_idx]) 
+        {
             continue;
         }
         
@@ -104,12 +117,16 @@ void expand_cluster(
         
         vector<int> current_neighbors = region_query(points, current_idx, eps);
         
-        if (current_neighbors.size() >= min_pts) {
+        if (current_neighbors.size() >= min_pts) 
+        {
             // Add new neighbors to seeds
             // CANNOT parallelize - modifying shared seeds vector
-            for (int neighbor_idx : current_neighbors) {
-                if (labels[neighbor_idx] == 0 || labels[neighbor_idx] == -1) {
-                    if (labels[neighbor_idx] == 0) {
+            for (int neighbor_idx : current_neighbors) 
+            {
+                if (labels[neighbor_idx] == 0 || labels[neighbor_idx] == -1) 
+                {
+                    if (labels[neighbor_idx] == 0) 
+                    {
                         seeds.push_back(neighbor_idx);
                     }
                     labels[neighbor_idx] = cluster_id;
@@ -123,7 +140,8 @@ vector<BoundingBox> cluster_cones(
     const vector<Point>& points,
     float eps,
     int min_pts
-) {
+) 
+{
     int n = points.size();
     vector<int> labels(n, 0);
     vector<bool> visited(n, false);
@@ -131,8 +149,10 @@ vector<BoundingBox> cluster_cones(
     
     // DBSCAN main loop - inherently sequential due to data dependencies
     // Each cluster depends on previous clustering decisions
-    for (int i = 0; i < n; i++) {
-        if (visited[i]) {
+    for (int i = 0; i < n; i++) 
+    {
+        if (visited[i]) 
+        {
             continue;
         }
         
@@ -160,8 +180,10 @@ vector<BoundingBox> cluster_cones(
         
         // Divide work among threads
         #pragma omp for nowait
-        for (int i = 0; i < n; i++) {
-            if (labels[i] > 0) {
+        for (int i = 0; i < n; i++) 
+        {
+            if (labels[i] > 0) 
+            {
                 local_clusters[labels[i]].push_back(i);
             }
         }
@@ -169,7 +191,8 @@ vector<BoundingBox> cluster_cones(
         // Merge local results into global (critical section)
         #pragma omp critical
         {
-            for (int c = 1; c <= cluster_id; c++) {
+            for (int c = 1; c <= cluster_id; c++) 
+            {
                 cluster_points[c].insert(cluster_points[c].end(),
                                         local_clusters[c].begin(),
                                         local_clusters[c].end());
@@ -190,10 +213,12 @@ vector<BoundingBox> cluster_cones(
         
         // Each iteration processes one cluster independently
         #pragma omp for schedule(dynamic)
-        for (int cluster = 1; cluster <= cluster_id; cluster++) {
+        for (int cluster = 1; cluster <= cluster_id; cluster++) 
+        {
             const auto& point_indices = cluster_points[cluster];
             
-            if (point_indices.empty()) {
+            if (point_indices.empty()) 
+            {
                 continue;
             }
             
@@ -205,7 +230,8 @@ vector<BoundingBox> cluster_cones(
             box.pixel_count = point_indices.size();
             
             // Find bounding box extents
-            for (int idx : point_indices) {
+            for (int idx : point_indices) 
+            {
                 box.x_min = min(box.x_min, points[idx].x);
                 box.y_min = min(box.y_min, points[idx].y);
                 box.x_max = max(box.x_max, points[idx].x);
@@ -239,7 +265,8 @@ vector<BoundingBox> cluster_cones(
     }
     
     // Merge all thread results
-    for (const auto& boxes : thread_boxes) {
+    for (const auto& boxes : thread_boxes) 
+    {
         bounding_boxes.insert(bounding_boxes.end(), boxes.begin(), boxes.end());
     }
     
@@ -253,13 +280,15 @@ vector<BoundingBox> cluster_cones(
 // ============================================================================
 
 // Divide points into spatial grid cells
-struct SpatialGrid {
+struct SpatialGrid 
+{
     int cell_size;
     int grid_width, grid_height;
     int img_width, img_height;
     vector<vector<vector<int>>> cells;  // cells[y][x] = list of point indices
     
-    SpatialGrid(const vector<Point>& points, int img_w, int img_h, float eps) {
+    SpatialGrid(const vector<Point>& points, int img_w, int img_h, float eps) 
+    {
         cell_size = (int)(eps * 2);  // Cell size should be at least 2*eps
         img_width = img_w;
         img_height = img_h;
@@ -269,11 +298,13 @@ struct SpatialGrid {
         cells.resize(grid_height, vector<vector<int>>(grid_width));
         
         // Assign points to cells
-        for (int i = 0; i < points.size(); i++) {
+        for (int i = 0; i < points.size(); i++) 
+        {
             int cell_x = points[i].x / cell_size;
             int cell_y = points[i].y / cell_size;
             if (cell_x >= 0 && cell_x < grid_width && 
-                cell_y >= 0 && cell_y < grid_height) {
+                cell_y >= 0 && cell_y < grid_height) 
+                {
                 cells[cell_y][cell_x].push_back(i);
             }
         }
@@ -281,7 +312,8 @@ struct SpatialGrid {
     
     // Get neighboring cells for range query
     vector<int> get_neighbors_in_range(const vector<Point>& points, 
-                                       int point_idx, float eps) {
+                                       int point_idx, float eps) 
+    {
         const Point& p = points[point_idx];
         int cx = p.x / cell_size;
         int cy = p.y / cell_size;
@@ -289,17 +321,22 @@ struct SpatialGrid {
         vector<int> neighbors;
         
         // Check this cell and 8 surrounding cells
-        for (int dy = -1; dy <= 1; dy++) {
-            for (int dx = -1; dx <= 1; dx++) {
+        for (int dy = -1; dy <= 1; dy++) 
+        {
+            for (int dx = -1; dx <= 1; dx++)
+            {
                 int nx = cx + dx;
                 int ny = cy + dy;
                 
-                if (nx < 0 || nx >= grid_width || ny < 0 || ny >= grid_height) {
+                if (nx < 0 || nx >= grid_width || ny < 0 || ny >= grid_height) 
+                {
                     continue;
                 }
                 
-                for (int idx : cells[ny][nx]) {
-                    if (distance(points[point_idx], points[idx]) <= eps) {
+                for (int idx : cells[ny][nx]) 
+                {
+                    if (distance(points[point_idx], points[idx]) <= eps) 
+                    {
                         neighbors.push_back(idx);
                     }
                 }
@@ -317,7 +354,8 @@ vector<BoundingBox> cluster_cones_optimized(
     int min_pts,
     int img_width,
     int img_height
-) {
+) 
+{
     int n = points.size();
     
     // Build spatial grid for faster neighbor queries
@@ -328,25 +366,29 @@ vector<BoundingBox> cluster_cones_optimized(
     int cluster_id = 0;
     
     // DBSCAN main loop - still sequential but with faster neighbor queries
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         if (visited[i]) continue;
         
         visited[i] = true;
         
         vector<int> seeds = grid.get_neighbors_in_range(points, i, eps);
         
-        if (seeds.size() < min_pts) {
+        if (seeds.size() < min_pts) 
+        {
             labels[i] = -1;
             continue;
         }
         
         cluster_id++;
         
-        for (int seed_idx : seeds) {
+        for (int seed_idx : seeds) 
+        {
             labels[seed_idx] = cluster_id;
         }
         
-        for (size_t j = 0; j < seeds.size(); j++) {
+        for (size_t j = 0; j < seeds.size(); j++) 
+        {
             int current_idx = seeds[j];
             
             if (visited[current_idx]) continue;
@@ -356,10 +398,14 @@ vector<BoundingBox> cluster_cones_optimized(
             vector<int> current_neighbors = grid.get_neighbors_in_range(
                 points, current_idx, eps);
             
-            if (current_neighbors.size() >= min_pts) {
-                for (int neighbor_idx : current_neighbors) {
-                    if (labels[neighbor_idx] == 0 || labels[neighbor_idx] == -1) {
-                        if (labels[neighbor_idx] == 0) {
+            if (current_neighbors.size() >= min_pts) 
+            {
+                for (int neighbor_idx : current_neighbors) 
+                {
+                    if (labels[neighbor_idx] == 0 || labels[neighbor_idx] == -1) 
+                    {
+                        if (labels[neighbor_idx] == 0) 
+                        {
                             seeds.push_back(neighbor_idx);
                         }
                         labels[neighbor_idx] = cluster_id;
@@ -377,15 +423,18 @@ vector<BoundingBox> cluster_cones_optimized(
         vector<vector<int>> local_clusters(cluster_id + 1);
         
         #pragma omp for nowait
-        for (int i = 0; i < n; i++) {
-            if (labels[i] > 0) {
+        for (int i = 0; i < n; i++) 
+        {
+            if (labels[i] > 0) 
+            {
                 local_clusters[labels[i]].push_back(i);
             }
         }
         
         #pragma omp critical
         {
-            for (int c = 1; c <= cluster_id; c++) {
+            for (int c = 1; c <= cluster_id; c++) 
+            {
                 cluster_points[c].insert(cluster_points[c].end(),
                                         local_clusters[c].begin(),
                                         local_clusters[c].end());
@@ -401,7 +450,8 @@ vector<BoundingBox> cluster_cones_optimized(
         int tid = omp_get_thread_num();
         
         #pragma omp for schedule(dynamic)
-        for (int cluster = 1; cluster <= cluster_id; cluster++) {
+        for (int cluster = 1; cluster <= cluster_id; cluster++) 
+        {
             const auto& point_indices = cluster_points[cluster];
             if (point_indices.empty()) continue;
             
@@ -412,7 +462,8 @@ vector<BoundingBox> cluster_cones_optimized(
             box.y_max = numeric_limits<int>::min();
             box.pixel_count = point_indices.size();
             
-            for (int idx : point_indices) {
+            for (int idx : point_indices) 
+            {
                 box.x_min = min(box.x_min, points[idx].x);
                 box.y_min = min(box.y_min, points[idx].y);
                 box.x_max = max(box.x_max, points[idx].x);
@@ -440,7 +491,8 @@ vector<BoundingBox> cluster_cones_optimized(
         }
     }
     
-    for (const auto& boxes : thread_boxes) {
+    for (const auto& boxes : thread_boxes) 
+    {
         bounding_boxes.insert(bounding_boxes.end(), boxes.begin(), boxes.end());
     }
     

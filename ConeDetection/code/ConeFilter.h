@@ -15,26 +15,30 @@
 
 using namespace std;
 
-enum class ConeColor {
+enum class ConeColor 
+{
     None,
     Yellow,
     Orange,
     Blue
 };
 
-struct HSV {
+struct HSV 
+{
     float h;  // 0-360
     float s;  // 0-1
     float v;  // 0-1
 };
 
-struct Point {
+struct Point 
+{
     int x;
     int y;
     ConeColor color;
 };
 
-struct BoundingBox {
+struct BoundingBox 
+{
     int x_min;
     int y_min;
     int x_max;
@@ -43,7 +47,8 @@ struct BoundingBox {
     int pixel_count;
 };
 
-struct SceneStats {
+struct SceneStats 
+{
     float avg_brightness;
     bool is_dark_scene;
 };

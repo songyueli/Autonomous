@@ -37,15 +37,19 @@ void draw_rectangle(
     unsigned char g,
     unsigned char b,
     int thickness = 2
-) {
+) 
+{
     // Draw top and bottom edges
-    for (int x = box.x_min; x <= box.x_max; x++) {
+    for (int x = box.x_min; x <= box.x_max; x++) 
+    {
         if (x < 0 || x >= width) continue;
         
-        for (int t = 0; t < thickness; t++) {
+        for (int t = 0; t < thickness; t++) 
+        {
             // Top edge
             int y_top = box.y_min + t;
-            if (y_top >= 0 && y_top < height) {
+            if (y_top >= 0 && y_top < height) 
+            {
                 int idx = (y_top * width + x) * 3;
                 image[idx + 0] = r;
                 image[idx + 1] = g;
@@ -54,7 +58,8 @@ void draw_rectangle(
             
             // Bottom edge
             int y_bot = box.y_max - t;
-            if (y_bot >= 0 && y_bot < height) {
+            if (y_bot >= 0 && y_bot < height) 
+            {
                 int idx = (y_bot * width + x) * 3;
                 image[idx + 0] = r;
                 image[idx + 1] = g;
@@ -64,13 +69,16 @@ void draw_rectangle(
     }
     
     // Draw left and right edges
-    for (int y = box.y_min; y <= box.y_max; y++) {
+    for (int y = box.y_min; y <= box.y_max; y++) 
+    {
         if (y < 0 || y >= height) continue;
         
-        for (int t = 0; t < thickness; t++) {
+        for (int t = 0; t < thickness; t++) 
+        {
             // Left edge
             int x_left = box.x_min + t;
-            if (x_left >= 0 && x_left < width) {
+            if (x_left >= 0 && x_left < width) 
+            {
                 int idx = (y * width + x_left) * 3;
                 image[idx + 0] = r;
                 image[idx + 1] = g;
@@ -79,7 +87,8 @@ void draw_rectangle(
             
             // Right edge
             int x_right = box.x_max - t;
-            if (x_right >= 0 && x_right < width) {
+            if (x_right >= 0 && x_right < width) 
+            {
                 int idx = (y * width + x_right) * 3;
                 image[idx + 0] = r;
                 image[idx + 1] = g;
@@ -89,17 +98,20 @@ void draw_rectangle(
     }
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv) 
+{
     create_directories(out_path);
 
-    if (argc != 2) {
+    if (argc != 2) 
+    {
         cerr << "Usage: " << argv[0] << " <dataset_path>\n";
         return 1;
     }
 
     fs::path dataset_path = argv[1];
 
-    if (!fs::exists(dataset_path)) {
+    if (!fs::exists(dataset_path)) 
+    {
         cerr << "ERROR: File path does not exist\n";
         return 1;
     }
@@ -109,18 +121,22 @@ int main(int argc, char** argv) {
     fs::path ann_path = dataset_path / "ann";
     fs::path img_path = dataset_path / "img";
 
-    if (!exists(ann_path) || !is_directory(ann_path)) {
+    if (!exists(ann_path) || !is_directory(ann_path)) 
+    {
         throw runtime_error("ann folder missing");
     }
 
-    if (!exists(img_path) || !is_directory(img_path)) {
+    if (!exists(img_path) || !is_directory(img_path)) 
+    {
         throw runtime_error("img folder missing");
     }
 
     vector<fs::path> images;
 
-    for (const auto& entry : fs::directory_iterator(img_path)) {
-        if (entry.is_regular_file()) {
+    for (const auto& entry : fs::directory_iterator(img_path)) 
+    {
+        if (entry.is_regular_file()) 
+        {
             auto ext = entry.path().extension().string();
             if (ext == ".jpg" || ext == ".png")
                 images.push_back(entry.path());
@@ -134,7 +150,8 @@ int main(int argc, char** argv) {
 
     int img_count = 0;
 
-    for (const fs::path& image_path : images) {
+    for (const fs::path& image_path : images) 
+    {
         auto process_start = high_resolution_clock::now();
 
         if (++img_count > num_images_parse)
@@ -149,7 +166,8 @@ int main(int argc, char** argv) {
             &width, &height, &channels, 0
         );
 
-        if (!pixels) {
+        if (!pixels) 
+        {
             cerr << "Failed to load image: " << image_path << "\n";
             continue;
         }
@@ -171,8 +189,10 @@ int main(int argc, char** argv) {
         // Create output image (dimmed background)
         vector<unsigned char> output(width * height * 3, 0);
 
-        for (int j = min_height_bound; j < max_height_bound; j++) {
-            for (int i = 0; i < width; i++) {
+        for (int j = min_height_bound; j < max_height_bound; j++) 
+        {
+            for (int i = 0; i < width; i++) 
+            {
                 int pixel_index = (j * width) + i;
                 int channel_index = pixel_index * 3;
 
@@ -183,17 +203,22 @@ int main(int argc, char** argv) {
                 // Pass scene info to classifier
                 ConeColor color = classify_pixel(r, g, b, scene.is_dark_scene);
 
-                if (color == ConeColor::Yellow) {
+                if (color == ConeColor::Yellow) 
+                {
                     yellow_points.push_back({i, j, ConeColor::Yellow});
                     output[channel_index + 0] = 255;
                     output[channel_index + 1] = 255;
                     output[channel_index + 2] = 0;
-                } else if (color == ConeColor::Orange) {
+                } 
+                else if (color == ConeColor::Orange) 
+                {
                     orange_points.push_back({i, j, ConeColor::Orange});
                     output[channel_index + 0] = 255;
                     output[channel_index + 1] = 120;
                     output[channel_index + 2] = 0;
-                } else if (color == ConeColor::Blue) {
+                } 
+                else if (color == ConeColor::Blue) 
+                {
                     blue_points.push_back({i, j, ConeColor::Blue});
                     output[channel_index + 0] = 0;
                     output[channel_index + 1] = 0;
@@ -221,13 +246,16 @@ int main(int argc, char** argv) {
         cout << "  Blue cones: " << blue_boxes.size() << endl;
 
         // Draw bounding boxes
-        for (const auto& box : yellow_boxes) {
+        for (const auto& box : yellow_boxes) 
+        {
             draw_rectangle(output, width, height, box, 255, 255, 0, 3);
         }
-        for (const auto& box : orange_boxes) {
+        for (const auto& box : orange_boxes) 
+        {
             draw_rectangle(output, width, height, box, 255, 120, 0, 3);
         }
-        for (const auto& box : blue_boxes) {
+        for (const auto& box : blue_boxes) 
+        {
             draw_rectangle(output, width, height, box, 0, 100, 255, 3);
         }
 
