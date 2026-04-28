@@ -1,0 +1,92 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 118613543,
+            "tagId": 30143178,
+            "name": "train",
+            "value": null,
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:38.123Z",
+            "updatedAt": "2020-06-04T10:03:38.123Z"
+        }
+    ],
+    "size": {
+        "height": 2328,
+        "width": 2872
+    },
+    "objects": [
+        {
+            "id": 889951583,
+            "classId": 9993511,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:38.123Z",
+            "updatedAt": "2020-06-04T10:03:38.123Z",
+            "tags": [],
+            "classTitle": "blue_cone",
+            "points": {
+                "exterior": [
+                    [
+                        1157,
+                        1531
+                    ],
+                    [
+                        1397,
+                        1827
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889951582,
+            "classId": 9993511,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:38.123Z",
+            "updatedAt": "2020-06-04T10:03:38.123Z",
+            "tags": [],
+            "classTitle": "blue_cone",
+            "points": {
+                "exterior": [
+                    [
+                        2358,
+                        1209
+                    ],
+                    [
+                        2431,
+                        1297
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889951581,
+            "classId": 9993506,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:38.123Z",
+            "updatedAt": "2020-06-04T10:03:38.123Z",
+            "tags": [],
+            "classTitle": "yellow_cone",
+            "points": {
+                "exterior": [
+                    [
+                        2632,
+                        1166
+                    ],
+                    [
+                        2682,
+                        1224
+                    ]
+                ],
+                "interior": []
+            }
+        }
+    ]
+}

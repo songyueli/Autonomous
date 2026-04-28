@@ -1,0 +1,648 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 118613499,
+            "tagId": 30143178,
+            "name": "train",
+            "value": null,
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z"
+        }
+    ],
+    "size": {
+        "height": 2328,
+        "width": 2872
+    },
+    "objects": [
+        {
+            "id": 889950811,
+            "classId": 9993511,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [],
+            "classTitle": "blue_cone",
+            "points": {
+                "exterior": [
+                    [
+                        423,
+                        1448
+                    ],
+                    [
+                        591,
+                        1639
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889950810,
+            "classId": 9993511,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [
+                {
+                    "id": 135971231,
+                    "tagId": 30143182,
+                    "name": "truncated",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:37.562Z",
+                    "updatedAt": "2020-06-04T10:03:37.562Z"
+                },
+                {
+                    "id": 135971232,
+                    "tagId": 30143179,
+                    "name": "knocked_over",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:37.562Z",
+                    "updatedAt": "2020-06-04T10:03:37.562Z"
+                }
+            ],
+            "classTitle": "blue_cone",
+            "points": {
+                "exterior": [
+                    [
+                        490,
+                        1227
+                    ],
+                    [
+                        539,
+                        1261
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889950809,
+            "classId": 9993511,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [
+                {
+                    "id": 135971229,
+                    "tagId": 30143181,
+                    "name": "sticker_band_removed",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:37.562Z",
+                    "updatedAt": "2020-06-04T10:03:37.562Z"
+                },
+                {
+                    "id": 135971230,
+                    "tagId": 30143182,
+                    "name": "truncated",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:37.562Z",
+                    "updatedAt": "2020-06-04T10:03:37.562Z"
+                }
+            ],
+            "classTitle": "blue_cone",
+            "points": {
+                "exterior": [
+                    [
+                        140,
+                        1279
+                    ],
+                    [
+                        182,
+                        1362
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889950808,
+            "classId": 9993511,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [],
+            "classTitle": "blue_cone",
+            "points": {
+                "exterior": [
+                    [
+                        375,
+                        1188
+                    ],
+                    [
+                        403,
+                        1223
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889950807,
+            "classId": 9993511,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [],
+            "classTitle": "blue_cone",
+            "points": {
+                "exterior": [
+                    [
+                        902,
+                        1222
+                    ],
+                    [
+                        940,
+                        1272
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889950806,
+            "classId": 9993511,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [
+                {
+                    "id": 135971228,
+                    "tagId": 30143182,
+                    "name": "truncated",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:37.562Z",
+                    "updatedAt": "2020-06-04T10:03:37.562Z"
+                }
+            ],
+            "classTitle": "blue_cone",
+            "points": {
+                "exterior": [
+                    [
+                        952,
+                        1179
+                    ],
+                    [
+                        976,
+                        1209
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889950805,
+            "classId": 9993511,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [],
+            "classTitle": "blue_cone",
+            "points": {
+                "exterior": [
+                    [
+                        2341,
+                        1288
+                    ],
+                    [
+                        2430,
+                        1387
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889950804,
+            "classId": 9993511,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [
+                {
+                    "id": 135971227,
+                    "tagId": 30143179,
+                    "name": "knocked_over",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:37.562Z",
+                    "updatedAt": "2020-06-04T10:03:37.562Z"
+                }
+            ],
+            "classTitle": "blue_cone",
+            "points": {
+                "exterior": [
+                    [
+                        1474,
+                        1206
+                    ],
+                    [
+                        1519,
+                        1235
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889950803,
+            "classId": 9993511,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [
+                {
+                    "id": 135971226,
+                    "tagId": 30143182,
+                    "name": "truncated",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:37.562Z",
+                    "updatedAt": "2020-06-04T10:03:37.562Z"
+                }
+            ],
+            "classTitle": "blue_cone",
+            "points": {
+                "exterior": [
+                    [
+                        1356,
+                        1168
+                    ],
+                    [
+                        1376,
+                        1195
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889950802,
+            "classId": 9993511,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [],
+            "classTitle": "blue_cone",
+            "points": {
+                "exterior": [
+                    [
+                        1296,
+                        1158
+                    ],
+                    [
+                        1311,
+                        1180
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889950801,
+            "classId": 9993506,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [
+                {
+                    "id": 135971225,
+                    "tagId": 30143181,
+                    "name": "sticker_band_removed",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:37.562Z",
+                    "updatedAt": "2020-06-04T10:03:37.562Z"
+                }
+            ],
+            "classTitle": "yellow_cone",
+            "points": {
+                "exterior": [
+                    [
+                        653,
+                        1296
+                    ],
+                    [
+                        746,
+                        1394
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889950800,
+            "classId": 9993506,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [
+                {
+                    "id": 135971224,
+                    "tagId": 30143179,
+                    "name": "knocked_over",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:37.562Z",
+                    "updatedAt": "2020-06-04T10:03:37.562Z"
+                }
+            ],
+            "classTitle": "yellow_cone",
+            "points": {
+                "exterior": [
+                    [
+                        768,
+                        1259
+                    ],
+                    [
+                        838,
+                        1304
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889950799,
+            "classId": 9993506,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [],
+            "classTitle": "yellow_cone",
+            "points": {
+                "exterior": [
+                    [
+                        472,
+                        1248
+                    ],
+                    [
+                        520,
+                        1304
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889950798,
+            "classId": 9993506,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [
+                {
+                    "id": 135971223,
+                    "tagId": 30143181,
+                    "name": "sticker_band_removed",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:37.562Z",
+                    "updatedAt": "2020-06-04T10:03:37.562Z"
+                }
+            ],
+            "classTitle": "yellow_cone",
+            "points": {
+                "exterior": [
+                    [
+                        650,
+                        1193
+                    ],
+                    [
+                        682,
+                        1229
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889950797,
+            "classId": 9993506,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [
+                {
+                    "id": 135971222,
+                    "tagId": 30143181,
+                    "name": "sticker_band_removed",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:37.562Z",
+                    "updatedAt": "2020-06-04T10:03:37.562Z"
+                }
+            ],
+            "classTitle": "yellow_cone",
+            "points": {
+                "exterior": [
+                    [
+                        937,
+                        1202
+                    ],
+                    [
+                        967,
+                        1244
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889950796,
+            "classId": 9993506,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [
+                {
+                    "id": 135971221,
+                    "tagId": 30143179,
+                    "name": "knocked_over",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:37.562Z",
+                    "updatedAt": "2020-06-04T10:03:37.562Z"
+                }
+            ],
+            "classTitle": "yellow_cone",
+            "points": {
+                "exterior": [
+                    [
+                        1718,
+                        1232
+                    ],
+                    [
+                        1775,
+                        1278
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889950795,
+            "classId": 9993506,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [
+                {
+                    "id": 135971220,
+                    "tagId": 30143182,
+                    "name": "truncated",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:37.562Z",
+                    "updatedAt": "2020-06-04T10:03:37.562Z"
+                }
+            ],
+            "classTitle": "yellow_cone",
+            "points": {
+                "exterior": [
+                    [
+                        1490,
+                        1180
+                    ],
+                    [
+                        1516,
+                        1214
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889950794,
+            "classId": 9993506,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [
+                {
+                    "id": 135971219,
+                    "tagId": 30143182,
+                    "name": "truncated",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:37.562Z",
+                    "updatedAt": "2020-06-04T10:03:37.562Z"
+                }
+            ],
+            "classTitle": "yellow_cone",
+            "points": {
+                "exterior": [
+                    [
+                        1341,
+                        1179
+                    ],
+                    [
+                        1367,
+                        1213
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889950793,
+            "classId": 9993506,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [],
+            "classTitle": "yellow_cone",
+            "points": {
+                "exterior": [
+                    [
+                        1254,
+                        1164
+                    ],
+                    [
+                        1272,
+                        1190
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889950792,
+            "classId": 9993512,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [
+                {
+                    "id": 135971218,
+                    "tagId": 30143179,
+                    "name": "knocked_over",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:37.562Z",
+                    "updatedAt": "2020-06-04T10:03:37.562Z"
+                }
+            ],
+            "classTitle": "orange_cone",
+            "points": {
+                "exterior": [
+                    [
+                        1630,
+                        1265
+                    ],
+                    [
+                        1688,
+                        1322
+                    ]
+                ],
+                "interior": []
+            }
+        }
+    ]
+}

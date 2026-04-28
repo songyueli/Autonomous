@@ -1,0 +1,146 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 118613560,
+            "tagId": 30143178,
+            "name": "train",
+            "value": null,
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z"
+        }
+    ],
+    "size": {
+        "height": 2328,
+        "width": 2872
+    },
+    "objects": [
+        {
+            "id": 889951673,
+            "classId": 9993511,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [
+                {
+                    "id": 135971436,
+                    "tagId": 30143179,
+                    "name": "knocked_over",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:37.562Z",
+                    "updatedAt": "2020-06-04T10:03:37.562Z"
+                }
+            ],
+            "classTitle": "blue_cone",
+            "points": {
+                "exterior": [
+                    [
+                        196,
+                        1550
+                    ],
+                    [
+                        375,
+                        1740
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889951672,
+            "classId": 9993511,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [],
+            "classTitle": "blue_cone",
+            "points": {
+                "exterior": [
+                    [
+                        2407,
+                        1199
+                    ],
+                    [
+                        2469,
+                        1266
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889951671,
+            "classId": 9993506,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [
+                {
+                    "id": 135971435,
+                    "tagId": 30143179,
+                    "name": "knocked_over",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:37.562Z",
+                    "updatedAt": "2020-06-04T10:03:37.562Z"
+                }
+            ],
+            "classTitle": "yellow_cone",
+            "points": {
+                "exterior": [
+                    [
+                        1806,
+                        1310
+                    ],
+                    [
+                        1901,
+                        1406
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889951670,
+            "classId": 9993512,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:37.642Z",
+            "updatedAt": "2020-06-04T10:03:37.642Z",
+            "tags": [
+                {
+                    "id": 135971434,
+                    "tagId": 30143179,
+                    "name": "knocked_over",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:37.562Z",
+                    "updatedAt": "2020-06-04T10:03:37.562Z"
+                }
+            ],
+            "classTitle": "orange_cone",
+            "points": {
+                "exterior": [
+                    [
+                        2510,
+                        1280
+                    ],
+                    [
+                        2611,
+                        1366
+                    ]
+                ],
+                "interior": []
+            }
+        }
+    ]
+}

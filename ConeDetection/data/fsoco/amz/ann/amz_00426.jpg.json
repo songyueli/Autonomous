@@ -1,0 +1,218 @@
+{
+    "description": "",
+    "tags": [
+        {
+            "id": 118613634,
+            "tagId": 30143178,
+            "name": "train",
+            "value": null,
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:38.779Z",
+            "updatedAt": "2020-06-04T10:03:38.779Z"
+        }
+    ],
+    "size": {
+        "height": 2328,
+        "width": 2872
+    },
+    "objects": [
+        {
+            "id": 889952352,
+            "classId": 9993511,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:38.780Z",
+            "updatedAt": "2020-06-04T10:03:38.780Z",
+            "tags": [
+                {
+                    "id": 135971675,
+                    "tagId": 30143179,
+                    "name": "knocked_over",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:38.712Z",
+                    "updatedAt": "2020-06-04T10:03:38.712Z"
+                }
+            ],
+            "classTitle": "blue_cone",
+            "points": {
+                "exterior": [
+                    [
+                        1896,
+                        1289
+                    ],
+                    [
+                        1994,
+                        1420
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889952351,
+            "classId": 9993511,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:38.780Z",
+            "updatedAt": "2020-06-04T10:03:38.780Z",
+            "tags": [
+                {
+                    "id": 135971674,
+                    "tagId": 30143182,
+                    "name": "truncated",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:38.712Z",
+                    "updatedAt": "2020-06-04T10:03:38.712Z"
+                }
+            ],
+            "classTitle": "blue_cone",
+            "points": {
+                "exterior": [
+                    [
+                        2604,
+                        1177
+                    ],
+                    [
+                        2677,
+                        1251
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889952350,
+            "classId": 9993511,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:38.780Z",
+            "updatedAt": "2020-06-04T10:03:38.780Z",
+            "tags": [],
+            "classTitle": "blue_cone",
+            "points": {
+                "exterior": [
+                    [
+                        2603,
+                        1114
+                    ],
+                    [
+                        2637,
+                        1156
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889952349,
+            "classId": 9993506,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:38.780Z",
+            "updatedAt": "2020-06-04T10:03:38.780Z",
+            "tags": [
+                {
+                    "id": 135971673,
+                    "tagId": 30143181,
+                    "name": "sticker_band_removed",
+                    "value": null,
+                    "labelerLogin": "fsocov2",
+                    "createdAt": "2020-06-04T10:03:38.712Z",
+                    "updatedAt": "2020-06-04T10:03:38.712Z"
+                }
+            ],
+            "classTitle": "yellow_cone",
+            "points": {
+                "exterior": [
+                    [
+                        649,
+                        1185
+                    ],
+                    [
+                        823,
+                        1368
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889952348,
+            "classId": 9993506,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:38.780Z",
+            "updatedAt": "2020-06-04T10:03:38.780Z",
+            "tags": [],
+            "classTitle": "yellow_cone",
+            "points": {
+                "exterior": [
+                    [
+                        2411,
+                        1147
+                    ],
+                    [
+                        2467,
+                        1207
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889952347,
+            "classId": 9993506,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:38.780Z",
+            "updatedAt": "2020-06-04T10:03:38.780Z",
+            "tags": [],
+            "classTitle": "yellow_cone",
+            "points": {
+                "exterior": [
+                    [
+                        2676,
+                        1122
+                    ],
+                    [
+                        2720,
+                        1171
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 889952346,
+            "classId": 9993512,
+            "description": "",
+            "geometryType": "rectangle",
+            "labelerLogin": "fsocov2",
+            "createdAt": "2020-06-04T10:03:38.780Z",
+            "updatedAt": "2020-06-04T10:03:38.780Z",
+            "tags": [],
+            "classTitle": "orange_cone",
+            "points": {
+                "exterior": [
+                    [
+                        2543,
+                        1219
+                    ],
+                    [
+                        2646,
+                        1318
+                    ]
+                ],
+                "interior": []
+            }
+        }
+    ]
+}

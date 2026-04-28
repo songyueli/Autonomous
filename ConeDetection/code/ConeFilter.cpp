@@ -199,9 +199,9 @@ vector<BoundingBox> merge_overlapping_boxes(vector<BoundingBox>& boxes) {
 
             int x_dist = std::abs(current_cx - other_cx);
 
-            bool horizontally_related = x_overlap > 15 || x_dist < 25;
+            bool horizontally_related = x_overlap > 10 || x_dist < 25;
 
-            if (horizontally_related && y_gap < 45)
+            if (horizontally_related && y_gap < 30)
             {
                 current.x_min = std::min(current.x_min, boxes[j].x_min);
                 current.y_min = std::min(current.y_min, boxes[j].y_min);

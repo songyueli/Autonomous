@@ -85,6 +85,51 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
 	cd /home/hice1/sli967/Autonomous/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/hice1/sli967/Autonomous/build/CMakeFiles /home/hice1/sli967/Autonomous/build/ConeDetection//CMakeFiles/progress.marks
@@ -117,25 +162,39 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-ConeDetection/CMakeFiles/ConeDetection.dir/rule:
-	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ConeDetection/CMakeFiles/ConeDetection.dir/rule
-.PHONY : ConeDetection/CMakeFiles/ConeDetection.dir/rule
+ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/rule:
+	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/rule
+.PHONY : ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/rule
 
 # Convenience name for target.
-ConeDetection: ConeDetection/CMakeFiles/ConeDetection.dir/rule
-.PHONY : ConeDetection
+ConeDetection_hybrid: ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/rule
+.PHONY : ConeDetection_hybrid
 
 # fast build rule for target.
-ConeDetection/fast:
-	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection.dir/build.make ConeDetection/CMakeFiles/ConeDetection.dir/build
-.PHONY : ConeDetection/fast
+ConeDetection_hybrid/fast:
+	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/build.make ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/build
+.PHONY : ConeDetection_hybrid/fast
+
+# Convenience name for target.
+ConeDetection/CMakeFiles/build-all.dir/rule:
+	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ConeDetection/CMakeFiles/build-all.dir/rule
+.PHONY : ConeDetection/CMakeFiles/build-all.dir/rule
+
+# Convenience name for target.
+build-all: ConeDetection/CMakeFiles/build-all.dir/rule
+.PHONY : build-all
+
+# fast build rule for target.
+build-all/fast:
+	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/build-all.dir/build.make ConeDetection/CMakeFiles/build-all.dir/build
+.PHONY : build-all/fast
 
 code/ConeFilter.o: code/ConeFilter.cpp.o
 .PHONY : code/ConeFilter.o
 
 # target to build an object file
 code/ConeFilter.cpp.o:
-	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection.dir/build.make ConeDetection/CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.o
+	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/build.make ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/code/ConeFilter.cpp.o
 .PHONY : code/ConeFilter.cpp.o
 
 code/ConeFilter.i: code/ConeFilter.cpp.i
@@ -143,7 +202,7 @@ code/ConeFilter.i: code/ConeFilter.cpp.i
 
 # target to preprocess a source file
 code/ConeFilter.cpp.i:
-	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection.dir/build.make ConeDetection/CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.i
+	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/build.make ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/code/ConeFilter.cpp.i
 .PHONY : code/ConeFilter.cpp.i
 
 code/ConeFilter.s: code/ConeFilter.cpp.s
@@ -151,15 +210,39 @@ code/ConeFilter.s: code/ConeFilter.cpp.s
 
 # target to generate assembly for a file
 code/ConeFilter.cpp.s:
-	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection.dir/build.make ConeDetection/CMakeFiles/ConeDetection.dir/code/ConeFilter.cpp.s
+	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/build.make ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/code/ConeFilter.cpp.s
 .PHONY : code/ConeFilter.cpp.s
+
+code/ConeFilterCUDA.o: code/ConeFilterCUDA.cu.o
+.PHONY : code/ConeFilterCUDA.o
+
+# target to build an object file
+code/ConeFilterCUDA.cu.o:
+	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/build.make ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/code/ConeFilterCUDA.cu.o
+.PHONY : code/ConeFilterCUDA.cu.o
+
+code/ConeFilterCUDA.i: code/ConeFilterCUDA.cu.i
+.PHONY : code/ConeFilterCUDA.i
+
+# target to preprocess a source file
+code/ConeFilterCUDA.cu.i:
+	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/build.make ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/code/ConeFilterCUDA.cu.i
+.PHONY : code/ConeFilterCUDA.cu.i
+
+code/ConeFilterCUDA.s: code/ConeFilterCUDA.cu.s
+.PHONY : code/ConeFilterCUDA.s
+
+# target to generate assembly for a file
+code/ConeFilterCUDA.cu.s:
+	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/build.make ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/code/ConeFilterCUDA.cu.s
+.PHONY : code/ConeFilterCUDA.cu.s
 
 code/DBSCAN.o: code/DBSCAN.cpp.o
 .PHONY : code/DBSCAN.o
 
 # target to build an object file
 code/DBSCAN.cpp.o:
-	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection.dir/build.make ConeDetection/CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.o
+	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/build.make ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/code/DBSCAN.cpp.o
 .PHONY : code/DBSCAN.cpp.o
 
 code/DBSCAN.i: code/DBSCAN.cpp.i
@@ -167,7 +250,7 @@ code/DBSCAN.i: code/DBSCAN.cpp.i
 
 # target to preprocess a source file
 code/DBSCAN.cpp.i:
-	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection.dir/build.make ConeDetection/CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.i
+	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/build.make ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/code/DBSCAN.cpp.i
 .PHONY : code/DBSCAN.cpp.i
 
 code/DBSCAN.s: code/DBSCAN.cpp.s
@@ -175,32 +258,32 @@ code/DBSCAN.s: code/DBSCAN.cpp.s
 
 # target to generate assembly for a file
 code/DBSCAN.cpp.s:
-	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection.dir/build.make ConeDetection/CMakeFiles/ConeDetection.dir/code/DBSCAN.cpp.s
+	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/build.make ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/code/DBSCAN.cpp.s
 .PHONY : code/DBSCAN.cpp.s
 
-code/main.o: code/main.cpp.o
-.PHONY : code/main.o
+code/main_hybrid.o: code/main_hybrid.cpp.o
+.PHONY : code/main_hybrid.o
 
 # target to build an object file
-code/main.cpp.o:
-	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection.dir/build.make ConeDetection/CMakeFiles/ConeDetection.dir/code/main.cpp.o
-.PHONY : code/main.cpp.o
+code/main_hybrid.cpp.o:
+	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/build.make ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/code/main_hybrid.cpp.o
+.PHONY : code/main_hybrid.cpp.o
 
-code/main.i: code/main.cpp.i
-.PHONY : code/main.i
+code/main_hybrid.i: code/main_hybrid.cpp.i
+.PHONY : code/main_hybrid.i
 
 # target to preprocess a source file
-code/main.cpp.i:
-	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection.dir/build.make ConeDetection/CMakeFiles/ConeDetection.dir/code/main.cpp.i
-.PHONY : code/main.cpp.i
+code/main_hybrid.cpp.i:
+	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/build.make ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/code/main_hybrid.cpp.i
+.PHONY : code/main_hybrid.cpp.i
 
-code/main.s: code/main.cpp.s
-.PHONY : code/main.s
+code/main_hybrid.s: code/main_hybrid.cpp.s
+.PHONY : code/main_hybrid.s
 
 # target to generate assembly for a file
-code/main.cpp.s:
-	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection.dir/build.make ConeDetection/CMakeFiles/ConeDetection.dir/code/main.cpp.s
-.PHONY : code/main.cpp.s
+code/main_hybrid.cpp.s:
+	cd /home/hice1/sli967/Autonomous/build && $(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/build.make ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/code/main_hybrid.cpp.s
+.PHONY : code/main_hybrid.cpp.s
 
 # Help Target
 help:
@@ -209,17 +292,25 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... ConeDetection"
+	@echo "... build-all"
+	@echo "... ConeDetection_hybrid"
 	@echo "... code/ConeFilter.o"
 	@echo "... code/ConeFilter.i"
 	@echo "... code/ConeFilter.s"
+	@echo "... code/ConeFilterCUDA.o"
+	@echo "... code/ConeFilterCUDA.i"
+	@echo "... code/ConeFilterCUDA.s"
 	@echo "... code/DBSCAN.o"
 	@echo "... code/DBSCAN.i"
 	@echo "... code/DBSCAN.s"
-	@echo "... code/main.o"
-	@echo "... code/main.i"
-	@echo "... code/main.s"
+	@echo "... code/main_hybrid.o"
+	@echo "... code/main_hybrid.i"
+	@echo "... code/main_hybrid.s"
 .PHONY : help
 
 

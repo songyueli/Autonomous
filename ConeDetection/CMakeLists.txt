@@ -1,36 +1,127 @@
 # Minimum CMake version required
-cmake_minimum_required(VERSION 3.10)
-
+cmake_minimum_required(VERSION 3.18)  # 3.18+ needed for CUDA support
+ 
 # Project name and version
-project(ConeDetection VERSION 1.0)
-
-# Need OpenCV
-# find_package(OpenCV REQUIRED) # won't work for displaying images
-find_package(OpenMP REQUIRED)
-
+project(ConeDetection VERSION 1.0 LANGUAGES CXX)
+ 
+# Options for different build types
+option(USE_OPENMP "Enable OpenMP parallelization" ON)
+option(USE_CUDA "Enable CUDA GPU acceleration" ON)
+ 
 # Specify the C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-
-# Add source files
-file(GLOB SOURCES ${PROJECT_SOURCE_DIR}/code/main.cpp
-                    ${PROJECT_SOURCE_DIR}/code/ConeFilter.cpp
-                    ${PROJECT_SOURCE_DIR}/code/DBSCAN.cpp)
-
-message(STATUS "OpenCV version: ${OpenCV_VERSION}")
-message(STATUS "OpenCV include dirs: ${OpenCV_INCLUDE_DIRS}")
-message(STATUS "OpenCV libs: ${OpenCV_LIBS}")
-
-# Add the executable
-add_executable(ConeDetection ${SOURCES})
-
-# Link the executable to the libraries in the lib directory
-target_include_directories(ConeDetection PUBLIC ${OpenCV_INCLUDE_DIRS})
-target_link_libraries(ConeDetection PUBLIC ${OpenCV_LIBS})
-
-#file(COPY "${PROJECT_SOURCE_DIR}/graphics" DESTINATION "${COMMON_OUTPUT_DIR}/bin/")
-#file(COPY "${PROJECT_SOURCE_DIR}/fonts" DESTINATION "${COMMON_OUTPUT_DIR}/bin/")
-#file(COPY "${PROJECT_SOURCE_DIR}/low res" DESTINATION "${COMMON_OUTPUT_DIR}/bin/")
-#file(COPY "${PROJECT_SOURCE_DIR}/sound" DESTINATION "${COMMON_OUTPUT_DIR}/bin/")
-
-# to run: ./ConeDetection ~/scratch/Autonomous/fsoco/fsoco/amz
+ 
+# Optimization flags
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -march=native")
+ 
+# Find OpenMP if requested
+if(USE_OPENMP)
+    find_package(OpenMP REQUIRED)
+    message(STATUS "OpenMP found: ${OpenMP_CXX_VERSION}")
+endif()
+ 
+# Enable CUDA if requested
+if(USE_CUDA)
+    enable_language(CUDA)
+    find_package(CUDAToolkit REQUIRED)
+    
+    # Set CUDA architecture (adjust for your GPU)
+    # RTX 30xx: 86, RTX 40xx: 89, RTX 20xx: 75, GTX 10xx: 61
+    set(CMAKE_CUDA_ARCHITECTURES 75)
+    
+    message(STATUS "CUDA found: ${CUDAToolkit_VERSION}")
+    message(STATUS "CUDA architectures: ${CMAKE_CUDA_ARCHITECTURES}")
+endif()
+ 
+# Common source files
+set(COMMON_SOURCES
+    ${PROJECT_SOURCE_DIR}/code/ConeFilter.cpp
+    ${PROJECT_SOURCE_DIR}/code/DBSCAN.cpp
+)
+ 
+# CUDA sources (only if CUDA is enabled)
+if(USE_CUDA)
+    set(CUDA_SOURCES
+        ${PROJECT_SOURCE_DIR}/code/ConeFilterCUDA.cu
+    )
+    set_source_files_properties(${CUDA_SOURCES} PROPERTIES LANGUAGE CUDA)
+endif()
+ 
+# Determine which main file to use
+if(USE_OPENMP AND USE_CUDA)
+    set(MAIN_SOURCE ${PROJECT_SOURCE_DIR}/code/main_hybrid.cpp)
+    set(EXECUTABLE_NAME ConeDetection_hybrid)
+    message(STATUS "Building HYBRID version (OpenMP + CUDA)")
+elseif(USE_CUDA)
+    set(MAIN_SOURCE ${PROJECT_SOURCE_DIR}/code/main.cpp)
+    set(EXECUTABLE_NAME ConeDetection_cuda)
+    message(STATUS "Building CUDA version")
+elseif(USE_OPENMP)
+    set(MAIN_SOURCE ${PROJECT_SOURCE_DIR}/code/main_openmp.cpp)
+    set(EXECUTABLE_NAME ConeDetection_openmp)
+    message(STATUS "Building OpenMP version")
+else()
+    set(MAIN_SOURCE ${PROJECT_SOURCE_DIR}/code/main.cpp)
+    set(EXECUTABLE_NAME ConeDetection)
+    message(STATUS "Building ORIGINAL version (no parallelization)")
+endif()
+ 
+# Create executable
+if(USE_CUDA)
+    add_executable(${EXECUTABLE_NAME} ${MAIN_SOURCE} ${COMMON_SOURCES} ${CUDA_SOURCES})
+    
+    # Set CUDA properties
+    set_target_properties(${EXECUTABLE_NAME} PROPERTIES 
+        CUDA_SEPARABLE_COMPILATION ON
+        CUDA_STANDARD 14
+    )
+    
+    target_link_libraries(${EXECUTABLE_NAME} PRIVATE CUDA::cudart)
+else()
+    add_executable(${EXECUTABLE_NAME} ${MAIN_SOURCE} ${COMMON_SOURCES})
+endif()
+ 
+# Link OpenMP if enabled
+if(USE_OPENMP)
+    target_link_libraries(${EXECUTABLE_NAME} PRIVATE OpenMP::OpenMP_CXX)
+endif()
+ 
+# Include directories
+target_include_directories(${EXECUTABLE_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/code)
+ 
+# Link filesystem library if needed
+target_link_libraries(${EXECUTABLE_NAME} PRIVATE stdc++fs)
+ 
+# Print build configuration
+message(STATUS "")
+message(STATUS "=== Build Configuration ===")
+message(STATUS "Executable: ${EXECUTABLE_NAME}")
+message(STATUS "C++ Standard: ${CMAKE_CXX_STANDARD}")
+message(STATUS "Build Type: ${CMAKE_BUILD_TYPE}")
+message(STATUS "OpenMP: ${USE_OPENMP}")
+message(STATUS "CUDA: ${USE_CUDA}")
+if(USE_CUDA)
+    message(STATUS "CUDA Architectures: ${CMAKE_CUDA_ARCHITECTURES}")
+endif()
+message(STATUS "===========================")
+message(STATUS "")
+ 
+# Installation
+install(TARGETS ${EXECUTABLE_NAME} DESTINATION bin)
+ 
+# Custom targets for easy building of different versions
+add_custom_target(build-all
+    COMMENT "Build all versions"
+)
+ 
+# Add custom commands to build all versions
+add_custom_command(
+    TARGET build-all
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -DUSE_OPENMP=OFF -DUSE_CUDA=OFF ${PROJECT_SOURCE_DIR}
+    COMMAND ${CMAKE_COMMAND} --build .
+    COMMAND ${CMAKE_COMMAND} -DUSE_OPENMP=ON -DUSE_CUDA=OFF ${PROJECT_SOURCE_DIR}
+    COMMAND ${CMAKE_COMMAND} --build .
+    COMMENT "Building all CPU versions..."
+)
