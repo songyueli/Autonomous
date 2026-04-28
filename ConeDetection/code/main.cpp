@@ -5,6 +5,7 @@
 #include <vector>
 #include <stdexcept>
 #include <cstdint>
+#include <chrono>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -15,6 +16,7 @@
 #include "ConeFilter.h"
 
 using namespace std;
+using namespace std::chrono;
 namespace fs = filesystem;
 
 const fs::path out_path = "filtered_images";
@@ -23,7 +25,7 @@ const fs::path out_path = "filtered_images";
 const float eps = 3.0f;        // Maximum distance between points in a cluster
 const int min_pts = 30;         // Minimum points to form a cluster
 
-const int num_images_parse = 30;
+const int num_images_parse = 100;
 
 // Draw rectangle on image with no MP
 void draw_rectangle(
@@ -133,6 +135,8 @@ int main(int argc, char** argv) {
     int img_count = 0;
 
     for (const fs::path& image_path : images) {
+        auto process_start = high_resolution_clock::now();
+
         if (++img_count > num_images_parse)
         {
             break;
@@ -240,6 +244,11 @@ int main(int argc, char** argv) {
         cout << "  Wrote: " << output_file << endl;
 
         stbi_image_free(pixels);
+
+        auto process_end = high_resolution_clock::now();
+        auto process_time = duration_cast<microseconds>(process_end - process_start).count();
+
+        cout << "Processing Time: " << process_time / 1000.0 << endl;
     }
 
     return 0;

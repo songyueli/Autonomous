@@ -162,17 +162,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named ConeDetection
+# Target rules for targets named ConeDetection_hybrid
 
 # Build rule for target.
-ConeDetection: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ConeDetection
-.PHONY : ConeDetection
+ConeDetection_hybrid: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ConeDetection_hybrid
+.PHONY : ConeDetection_hybrid
 
 # fast build rule for target.
-ConeDetection/fast:
-	$(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection.dir/build.make ConeDetection/CMakeFiles/ConeDetection.dir/build
-.PHONY : ConeDetection/fast
+ConeDetection_hybrid/fast:
+	$(MAKE) $(MAKESILENT) -f ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/build.make ConeDetection/CMakeFiles/ConeDetection_hybrid.dir/build
+.PHONY : ConeDetection_hybrid/fast
 
 #=============================================================================
 # Target rules for targets named build-all
@@ -200,7 +200,7 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... build-all"
-	@echo "... ConeDetection"
+	@echo "... ConeDetection_hybrid"
 .PHONY : help
 
 

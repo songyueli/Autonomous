@@ -172,27 +172,16 @@ int main(int argc, char** argv) {
 
         vector<BoundingBox> yellow_boxes, orange_boxes, blue_boxes;
         
-        // Cluster each color in parallel
-        #pragma omp parallel sections
-        {
-            #pragma omp section
-            {
-                yellow_boxes = cluster_cones(yellow_points, eps, min_pts);
-                yellow_boxes = merge_overlapping_boxes(yellow_boxes);
-            }
-            
-            #pragma omp section
-            {
-                orange_boxes = cluster_cones(orange_points, eps, min_pts);
-                orange_boxes = merge_overlapping_boxes(orange_boxes);
-            }
-            
-            #pragma omp section
-            {
-                blue_boxes = cluster_cones(blue_points, eps, min_pts);
-                blue_boxes = merge_overlapping_boxes(blue_boxes);
-            }
-        }
+        // Cluster each color
+        yellow_boxes = cluster_cones(yellow_points, eps, min_pts);
+        yellow_boxes = merge_overlapping_boxes(yellow_boxes);
+
+        orange_boxes = cluster_cones(orange_points, eps, min_pts);
+        orange_boxes = merge_overlapping_boxes(orange_boxes);
+
+        blue_boxes = cluster_cones(blue_points, eps, min_pts);
+        blue_boxes = merge_overlapping_boxes(blue_boxes);
+
         
         auto clustering_end = high_resolution_clock::now();
         auto clustering_time = duration_cast<microseconds>(clustering_end - clustering_start).count();
